@@ -1,0 +1,2051 @@
+﻿<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perpustakaan: Pemimpin Negara dan Sumbangannya</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Fredoka:wght@400;600;700&family=Shantell+Sans:ital,wght@0,400;0,700;0,800;1,600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        shinRed: '#FF4D4D',
+                        shinYellow: '#FFD43B',
+                        shinBlue: '#4DABF7',
+                        shinGreen: '#51CF66',
+                        shinPink: '#FF8787',
+                        shinCream: '#FFF9DB',
+                        shinDark: '#111111'
+                    },
+                    fontFamily: {
+                        fredoka: ['Fredoka', 'cursive'],
+                        comic: ['Comic Neue', 'cursive'],
+                        shantell: ['Shantell Sans', 'cursive'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Transparent Pastel Polka Dot Halftone Background */
+        body {
+            font-family: 'Fredoka', cursive, sans-serif;
+            background-color: #FFFFFA;
+            background-image: 
+                radial-gradient(rgba(255, 212, 59, 0.12) 15%, transparent 16%),
+                radial-gradient(rgba(255, 135, 135, 0.12) 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            min-height: 100vh;
+            color: #111111;
+            overflow-x: hidden;
+        }
+
+        /* Comic Chunky Border & Offset Shadow Utility with Responsive Interactive Hover Movement */
+        .comic-box {
+            background-color: #FFFFFF;
+            border: 3.5px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            border-radius: 22px 18px 24px 16px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: gentleFloat 8s ease-in-out infinite;
+        }
+
+        .comic-box-yellow {
+            background-color: #FFF3BF;
+            border: 3.5px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            border-radius: 20px 24px 18px 22px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: gentleFloat 8s ease-in-out infinite 1.5s;
+        }
+
+        .comic-box-red {
+            background-color: #FFE3E3;
+            border: 3.5px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            border-radius: 24px 16px 20px 22px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: gentleFloat 8s ease-in-out infinite 3s;
+        }
+
+        .comic-box-blue {
+            background-color: #E7F5FF;
+            border: 3.5px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            border-radius: 18px 22px 24px 16px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: gentleFloat 8s ease-in-out infinite 4.5s;
+        }
+
+        .comic-box-green {
+            background-color: #E6FCF5;
+            border: 3.5px solid #111111;
+            box-shadow: 6px 6px 0px #111111;
+            border-radius: 22px 20px 16px 24px;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: gentleFloat 8s ease-in-out infinite 6s;
+        }
+
+        /* Responsive Mouse Hover Micro-Movement (Except static reading boxes) */
+        .comic-box:hover:not(.static-read-box), 
+        .comic-box-yellow:hover:not(.static-read-box), 
+        .comic-box-red:hover:not(.static-read-box), 
+        .comic-box-blue:hover:not(.static-read-box), 
+        .comic-box-green:hover:not(.static-read-box) {
+            transform: translateY(-12px) scale(1.035) rotate(-1deg);
+            box-shadow: 10px 14px 0px #111111;
+            animation-play-state: paused;
+            z-index: 20;
+        }
+
+        /* Static reading boxes (No float animation & movement) */
+        .static-read-box {
+            animation: none !important;
+            transform: none !important;
+        }
+
+        /* Comic Interactive Buttons */
+        .comic-btn {
+            border: 3px solid #111111;
+            box-shadow: 4px 4px 0px #111111;
+            transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            font-weight: 700;
+        }
+        .comic-btn:hover {
+            transform: translateY(-6px) scale(1.04) rotate(1deg);
+            box-shadow: 7px 9px 0px #111111;
+        }
+        .comic-btn:active {
+            transform: translate(2px, 2px) scale(0.98);
+            box-shadow: 2px 2px 0px #111111;
+        }
+
+        /* Gentle Float Animation */
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-3.5px); }
+        }
+
+        /* Card Shake Animation for Wrong Match */
+        @keyframes shakeCard {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px) rotate(-2deg); }
+            40%, 80% { transform: translateX(8px) rotate(2deg); }
+        }
+        .animate-shake {
+            animation: shakeCard 0.4s ease-in-out;
+        }
+
+        /* Star Burst Particle Canvas */
+        #starCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* 3D Flip Card Styles */
+        .perspective-1000 { perspective: 1000px; }
+        .transform-style-3d { transform-style: preserve-3d; }
+        .backface-hidden {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .rotate-y-180 { transform: rotateY(180deg); }
+
+        /* Custom Scrollbars */
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: #FFF9DB; border: 2px solid #111; }
+        ::-webkit-scrollbar-thumb { background: #FF4D4D; border: 2px solid #111; border-radius: 6px; }
+
+        @media print {
+            body * { visibility: hidden; }
+            #sijilPrintArea, #sijilPrintArea * { visibility: visible; }
+            #sijilPrintArea {
+                position: absolute; left: 0; top: 0; width: 100%;
+                margin: 0; padding: 24px; box-shadow: none; border: 6px solid #111 !important;
+                background: #FFF9DB !important; color: #111 !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col selection:bg-shinYellow selection:text-shinDark relative">
+
+    <!-- STAR BURST CANVAS -->
+    <canvas id="starCanvas"></canvas>
+
+    <!-- HEADER: PERPUSTAKAAN STYLE BANNER -->
+    <header class="bg-shinRed border-b-4 border-shinDark sticky top-0 z-40 shadow-[0_5px_0_#111]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-24">
+                
+                <!-- Logo & Title -->
+                <div class="flex items-center gap-3">
+                    <div class="w-14 h-14 rounded-2xl bg-shinYellow border-3 border-shinDark flex items-center justify-center text-3xl shadow-[3px_3px_0_#111] rotate-[-4deg] hover:rotate-[6deg] transition-transform">
+                        📚
+                    </div>
+                    <div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-shinYellow border-2 border-shinDark text-[11px] font-bold text-shinDark shadow-[2px_2px_0_#111]">
+                            <span>⭐ Perpustakaan Sejarah Interaktif</span>
+                        </div>
+                        <h1 class="font-shantell text-xl sm:text-2xl font-black text-white tracking-wide leading-tight drop-shadow-[2px_2px_0_#111]">
+                            PERPUSTAKAAN: PEMIMPIN NEGARA DAN SUMBANGANNYA
+                        </h1>
+                    </div>
+                </div>
+
+                <!-- Global Mastery Counter Badge & Controls -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <div onclick="switchRoom('semakan')" class="px-4 py-2 rounded-2xl bg-shinYellow border-3 border-shinDark cursor-pointer hover:scale-105 transition-transform flex items-center gap-2.5 shadow-[3px_3px_0_#111]">
+                        <span class="text-2xl animate-bounce">⭐</span>
+                        <div>
+                            <span class="text-[10px] uppercase font-bold text-shinDark block leading-tight">STATUS TOPIK</span>
+                            <span id="globalMasteryBadgeText" class="text-sm font-black text-shinRed">0 / 34 Kuasai</span>
+                        </div>
+                    </div>
+                    <!-- BGM SUIS BUTTON -->
+                    <button onclick="toggleBgmMusic()" id="bgmToggleBtn" class="comic-btn px-3 py-2 rounded-xl bg-shinYellow text-shinDark text-xs font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-music" id="bgmIcon"></i> <span id="bgmBtnText">BGM: MATI</span>
+                    </button>
+                    <button onclick="openImageGuideModal()" class="comic-btn px-3 py-2 rounded-xl bg-shinBlue text-white text-xs font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-folder-open"></i> Local Gambar
+                    </button>
+                    <button onclick="toggleAudioNarration()" id="audioNarrationBtn" class="comic-btn px-4 py-2 rounded-xl bg-shinGreen text-shinDark text-xs font-bold flex items-center gap-1.5">
+                        <i class="fa-solid fa-volume-high" id="audioIcon"></i> <span id="audioBtnText">Suara Panduan</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Navigation Button -->
+                <button onclick="toggleMobileNav()" class="lg:hidden p-3 rounded-2xl bg-shinYellow text-shinDark border-3 border-shinDark shadow-[3px_3px_0_#111]">
+                    <i class="fa-solid fa-bars text-xl" id="navIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MULTI-ROOM COMIC NAVIGATION TABS -->
+        <nav class="bg-shinYellow border-t-3 border-shinDark px-4 py-2 hidden lg:block overflow-x-auto">
+            <div class="max-w-7xl mx-auto flex items-center justify-between gap-1 text-xs">
+                <button onclick="switchRoom('lobi')" id="tab-lobi" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-shinRed text-white">
+                    🏛️ Bilik 1: Peranan PM
+                </button>
+                <button onclick="switchRoom('biodata')" id="tab-biodata" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-white text-shinDark">
+                    👤 Bilik 2: Kenali Pemimpin
+                </button>
+                <button onclick="switchRoom('sumbangan')" id="tab-sumbangan" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-white text-shinDark">
+                    🚀 Bilik 3: Sumbangan & Impak
+                </button>
+                <button onclick="switchRoom('matriks')" id="tab-matriks" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-white text-shinDark">
+                    📊 Bilik 4: Matriks & Nilai
+                </button>
+                <button onclick="switchRoom('game')" id="tab-game" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-shinBlue text-white">
+                    🎮 Bilik 5: Padanan Dua Seksyen
+                </button>
+                <button onclick="switchRoom('semakan')" id="tab-semakan" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-shinGreen text-shinDark">
+                    ⭐ Bilik 6: Semakan Kendiri
+                </button>
+                <button onclick="switchRoom('kuiz')" id="tab-kuiz" class="room-tab comic-btn px-4 py-2 rounded-xl font-black bg-shinPink text-white">
+                    📝 Bilik 7: Uji Minda & Sijil
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobileDrawer" class="hidden lg:hidden bg-shinYellow border-t-3 border-shinDark px-4 py-4 space-y-2 text-sm font-bold">
+            <button onclick="switchRoom('lobi'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-white text-shinDark">
+                🏛️ Bilik 1: Peranan & Tugas PM
+            </button>
+            <button onclick="switchRoom('biodata'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-white text-shinDark">
+                👤 Bilik 2: Kenali Pemimpin Negara (Biodata Penuh)
+            </button>
+            <button onclick="switchRoom('sumbangan'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-white text-shinDark">
+                🚀 Bilik 3: Sumbangan & Impak Negara
+            </button>
+            <button onclick="switchRoom('matriks'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-white text-shinDark">
+                📊 Bilik 4: Matriks Sumbangan & Nilai Murni
+            </button>
+            <button onclick="switchRoom('game'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-shinBlue text-white">
+                🎮 Bilik 5: Permainan Padanan Dua Seksyen
+            </button>
+            <button onclick="switchRoom('semakan'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-shinGreen text-shinDark">
+                ⭐ Bilik 6: Semakan Kendiri (Checklist Kuasai)
+            </button>
+            <button onclick="switchRoom('kuiz'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-shinPink text-white">
+                📝 Bilik 7: Uji Minda & Sijil Pelawat
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+
+        <!-- BILIK 1: PERANAN & TUGAS PERDANA MENTERI -->
+        <section id="room-lobi" class="room-section space-y-8">
+            <div class="comic-box-red p-6 sm:p-10 relative overflow-hidden">
+                <div class="max-w-3xl relative z-10 space-y-3">
+                    <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-shinYellow border-2 border-shinDark text-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
+                        <span>💥 BILIK 1: DEWAN PERANAN KERAJAAN</span>
+                    </span>
+                    <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark leading-tight">
+                        Institusi & Peranan Perdana Menteri Malaysia
+                    </h2>
+                    <p class="text-slate-800 text-sm leading-relaxed">
+                        Perdana Menteri merupakan Ketua Kerajaan yang memimpin pentadbiran persekutuan Malaysia! Mari kita terokai definisi perlembagaan dan 8 tugas utama di bawah!
+                    </p>
+                </div>
+            </div>
+
+            <div class="comic-box-yellow p-6 sm:p-8 space-y-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 rounded-2xl bg-shinRed text-white flex items-center justify-center text-3xl font-black border-3 border-shinDark shadow-[3px_3px_0_#111]">
+                        📜
+                    </div>
+                    <div>
+                        <h3 class="font-shantell text-xl font-bold text-shinDark">Perkara 43 Perlembagaan Persekutuan</h3>
+                        <p class="text-xs text-slate-700">Pelantikan & Status Rasmi Ketua Kerajaan Malaysia</p>
+                    </div>
+                </div>
+                <div class="bg-white p-5 rounded-2xl border-3 border-shinDark text-sm text-slate-900 leading-relaxed space-y-2 shadow-[3px_3px_0_#111]">
+                    <p>
+                        • <strong>Perdana Menteri</strong> ialah Ketua Kerajaan yang dilantik secara rasmi oleh <strong>Yang di-Pertuan Agong</strong> (Ketua Utama Negara) mengikut peruntukan Perkara 43(2)(a) Perlembagaan Persekutuan.
+                    </p>
+                    <p>
+                        • Beliau dipilih daripada kalangan ahli Dewan Rakyat yang pada hemat Seri Paduka Baginda mendapat kepercayaan majoriti ahli-ahli Dewan Rakyat.
+                    </p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div>
+                        <h3 class="font-shantell text-2xl font-black text-shinDark">Tugas-Tugas Rasmi Perdana Menteri</h3>
+                        <p class="text-xs text-slate-700">Klik butang [⭐ Kuasai] untuk meletupkan bintang!</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="lobiDutiesGrid">
+                    <!-- JS Injected Duty Cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- BILIK 2: KENALI PEMIMPIN NEGARA (BIODATA PENUH) -->
+        <section id="room-biodata" class="room-section hidden space-y-8">
+            <div class="comic-box-blue p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <span class="text-xs font-bold text-shinDark uppercase tracking-widest block mb-1">BILIK 2: GALLERY PEMIMPIN</span>
+                    <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Kenali Pemimpin Negara (Biodata Penuh)</h2>
+                    <p class="text-slate-800 text-xs sm:text-sm mt-1">
+                        Maklumat biodata ringkas & lengkap, pendidikan awal, pengajian tinggi, kerjaya, dan pasangan 10 Perdana Menteri.
+                    </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="filterBiodataEra('all')" id="btn-bio-all" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-shinRed text-white">Semua Era</button>
+                    <button onclick="filterBiodataEra('kemerdekaan')" id="btn-bio-kemerdekaan" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1957–1981</button>
+                    <button onclick="filterBiodataEra('pemodenan')" id="btn-bio-pemodenan" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1981–2018</button>
+                    <button onclick="filterBiodataEra('kontemporari')" id="btn-bio-kontemporari" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">2018–Kini</button>
+                </div>
+            </div>
+
+            <div class="relative max-w-xl mx-auto">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
+                <input type="text" id="biodataSearchInput" onkeyup="handleBiodataSearch()" placeholder="Cari nama Perdana Menteri, sekolah, atau gelaran..." 
+                       class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border-3 border-shinDark text-slate-900 placeholder-slate-500 font-bold focus:outline-none shadow-[4px_4px_0_#111] text-sm">
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="biodataCardsGrid">
+                <!-- JS Injected Cards -->
+            </div>
+        </section>
+
+        <!-- BILIK 3: SUMBANGAN & IMPAK PEMIMPIN NEGARA -->
+        <section id="room-sumbangan" class="room-section hidden space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="inline-block px-3 py-1 rounded-full bg-shinYellow border-2 border-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
+                    🚀 BILIK 3: SEJARAH & DASAR NEGARA
+                </span>
+                <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark">Sumbangan & Impak Pemimpin Negara</h2>
+                <p class="text-xs sm:text-sm text-slate-800 font-medium">
+                    Pendedahan menyeluruh dasar sosioekonomi, wawasan pembangunan, dan impak 10 Perdana Menteri.
+                </p>
+            </div>
+
+            <div class="space-y-6" id="sumbanganFullContainer">
+                <!-- JS Injected Full Contribution Cards -->
+            </div>
+        </section>
+
+        <!-- BILIK 4: MATRIKS SUMBANGAN & NILAI MURNI -->
+        <section id="room-matriks" class="room-section hidden space-y-8">
+            <div class="text-center max-w-3xl mx-auto space-y-2">
+                <span class="inline-block px-3 py-1 rounded-full bg-shinPink text-white border-2 border-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
+                    📊 BILIK 4: ANALISIS BIDANG
+                </span>
+                <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark">Matriks Sumbangan & Nilai Kepimpinan</h2>
+            </div>
+
+            <div class="flex flex-wrap items-center justify-center gap-2" id="matriksFilterButtons"></div>
+
+            <div id="matriksDisplayArea" class="comic-box p-6 sm:p-8 space-y-6"></div>
+
+            <div class="pt-6">
+                <h3 class="font-shantell text-2xl font-black text-shinDark text-center mb-6">6 Nilai Kepimpinan Yang Boleh Dicontohi</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="nilaiCardsGrid"></div>
+            </div>
+        </section>
+
+        <!-- BILIK 5: PERMAINAN PADANAN DUA SEKSYEN -->
+        <section id="room-game" class="room-section hidden space-y-8">
+            <div class="comic-box-blue p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div>
+                    <span class="px-3 py-1 rounded-full bg-shinRed text-white font-black text-xs inline-block mb-2 border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                        🎮 BILIK 5: PERMAINAN PADANAN
+                    </span>
+                    <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Padanan Dua Seksyen: Pemimpin vs Sumbangan</h2>
+                    <p class="text-slate-800 text-xs sm:text-sm mt-1">
+                        Peraturan: Pilih <strong>1 Kad dari Seksyen A (Top)</strong> dan <strong>1 Kad dari Seksyen B (Bottom)</strong> di bawah!
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 bg-shinYellow p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] min-w-[240px] justify-around">
+                    <div class="text-center">
+                        <span class="text-[10px] text-shinDark uppercase font-black block">Tepat</span>
+                        <span id="gameMatchedScore" class="font-shantell text-2xl font-black text-shinRed">0 / 10</span>
+                    </div>
+                    <div class="h-8 w-1 bg-shinDark"></div>
+                    <div class="text-center">
+                        <span class="text-[10px] text-shinDark uppercase font-black block">Cubaan (Moves)</span>
+                        <span id="gameMovesCount" class="font-shantell text-2xl font-black text-shinBlue">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div id="gameAlertBanner" class="hidden p-4 rounded-2xl text-center font-black text-sm shadow-[4px_4px_0_#111] border-3 border-shinDark transition-all"></div>
+
+            <div class="comic-box p-6 space-y-4">
+                <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
+                    <h3 class="font-shantell text-lg font-bold text-shinRed flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">A</span>
+                        SEKSYEN A: Kad Pemimpin Negara (Pilih 1 Kad)
+                    </h3>
+                    <span class="text-xs text-slate-700 font-bold" id="secAStatus">Belum Dipilih</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" id="gridSectionA">
+                    <!-- JS Injected 10 Cards -->
+                </div>
+            </div>
+
+            <div class="comic-box p-6 space-y-4">
+                <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
+                    <h3 class="font-shantell text-lg font-bold text-shinBlue flex items-center gap-2">
+                        <span class="w-8 h-8 rounded-lg bg-shinBlue text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">B</span>
+                        SEKSYEN B: Kad Sumbangan & Gelaran (Pilih 1 Kad)
+                    </h3>
+                    <span class="text-xs text-slate-700 font-bold" id="secBStatus">Belum Dipilih</span>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="gridSectionB">
+                    <!-- JS Injected 10 Cards -->
+                </div>
+            </div>
+
+            <div class="text-center pt-2">
+                <button onclick="resetDualSectionGame()" class="comic-btn px-6 py-3 rounded-2xl bg-shinRed text-white font-black text-xs flex items-center gap-2 mx-auto">
+                    <i class="fa-solid fa-rotate-right"></i> Mula Semula Permainan Padanan
+                </button>
+            </div>
+        </section>
+
+        <!-- BILIK 6: SEMAKAN KENDIRI -->
+        <section id="room-semakan" class="room-section hidden space-y-8">
+            <div class="comic-box-green p-6 sm:p-8 space-y-6">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b-3 border-shinDark pb-4">
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-shinYellow text-shinDark font-black text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                            ⭐ BILIK 6: MODUL SEMAKAN KENDIRI
+                        </span>
+                        <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark mt-2">
+                            Checklist Penguasaan Pembelajaran (34 Topik)
+                        </h2>
+                        <p class="text-xs sm:text-sm text-slate-800 mt-1">
+                            Klik butang <strong class="text-shinRed font-black">"Kuasai"</strong> pada mana-mana topik untuk meletupkan bintang!
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] text-center min-w-[200px]">
+                        <span class="text-[10px] uppercase font-black text-slate-700 block">KEMAJUAN KESELURUHAN</span>
+                        <span id="semakanTotalProgressText" class="font-shantell text-3xl font-black text-shinRed">0 / 34</span>
+                        <div class="w-full bg-slate-200 h-3 rounded-full border-2 border-shinDark overflow-hidden mt-2">
+                            <div id="semakanTotalProgressBar" class="bg-shinGreen h-full w-0 transition-all duration-500"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="semakanChecklistGrid">
+                    <!-- JS Injected Lists -->
+                </div>
+            </div>
+        </section>
+
+        <!-- BILIK 7: UJI MINDA & SIJIL PELAWAT -->
+        <section id="room-kuiz" class="room-section hidden space-y-10">
+            <div class="comic-box-yellow p-6 sm:p-10" id="quizContainerBox">
+                <div class="flex items-center justify-between pb-4 mb-6 border-b-3 border-shinDark">
+                    <div>
+                        <span class="text-xs font-bold text-shinRed uppercase">BILIK 7: EVALUASI KUIZ</span>
+                        <h3 class="font-shantell text-2xl font-black text-shinDark">Soalan Uji Minda Sejarah</h3>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-bold text-slate-700 block">Skor</span>
+                        <span id="quizScoreDisplay" class="font-shantell text-2xl font-black text-shinRed">0 / 5</span>
+                    </div>
+                </div>
+
+                <div class="w-full bg-white h-4 rounded-full border-2 border-shinDark overflow-hidden mb-6">
+                    <div id="quizMeterBar" class="bg-shinRed h-full w-0 transition-all duration-300"></div>
+                </div>
+
+                <div id="quizQuestionBody" class="space-y-6"></div>
+                <div id="quizFeedbackBox" class="hidden p-4 rounded-2xl text-xs sm:text-sm font-bold border-3 border-shinDark mt-6"></div>
+
+                <div class="mt-6 flex justify-end">
+                    <button id="nextQuizBtn" onclick="nextQuizQuestion()" class="hidden comic-btn px-6 py-3 rounded-xl bg-shinRed text-white font-black text-xs sm:text-sm flex items-center gap-2">
+                        Soalan Seterusnya <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="comic-box-red p-6 sm:p-8 space-y-3">
+                <h4 class="font-shantell text-lg font-black text-shinDark flex items-center gap-2">
+                    💡 Sudut Pemikiran Kritis (KBAT)
+                </h4>
+                <p class="text-xs sm:text-sm text-slate-800 leading-relaxed font-bold">
+                    Mengapakah semangat perpaduan dan integriti amat penting untuk dicontohi oleh generasi muda daripada kepimpinan Perdana Menteri Malaysia?
+                </p>
+                <textarea id="kbatAnswerText" rows="3" placeholder="Tuliskan pandangan KBAT anda di sini..." 
+                          class="w-full p-4 rounded-2xl border-3 border-shinDark bg-white text-xs sm:text-sm text-slate-900 font-bold focus:outline-none shadow-[3px_3px_0_#111]"></textarea>
+                <button onclick="submitKbat()" class="comic-btn px-5 py-2.5 rounded-xl bg-shinYellow text-shinDark text-xs font-black">
+                    Hantar Jawapan KBAT
+                </button>
+                <p id="kbatFeedback" class="hidden text-xs font-black text-emerald-800 mt-2"></p>
+            </div>
+
+            <div class="comic-box p-8 space-y-6">
+                <div class="text-center max-w-xl mx-auto space-y-2">
+                    <div class="w-16 h-16 rounded-2xl bg-shinYellow text-shinDark text-3xl font-black flex items-center justify-center mx-auto border-3 border-shinDark shadow-[3px_3px_0_#111] rotate-[-4deg]">
+                        🎓
+                    </div>
+                    <h3 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Sijil Pelawat Perpustakaan</h3>
+                    <p class="text-slate-700 text-xs sm:text-sm font-bold">
+                        Jana Sijil Penghargaan Pelawat Perpustakaan rasmi untuk tujuan rekod ulangkaji sekolah!
+                    </p>
+                </div>
+
+                <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
+                    <input type="text" id="visitorNameInput" placeholder="Taip Nama Penuh Anda di sini..." 
+                           class="flex-1 px-4 py-3 rounded-xl bg-white border-3 border-shinDark text-slate-900 font-bold text-sm focus:outline-none shadow-[3px_3px_0_#111]">
+                    <button onclick="generateCertificate()" class="comic-btn px-6 py-3 rounded-xl bg-shinRed text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-certificate"></i> Jana Sijil
+                    </button>
+                </div>
+
+                <div id="sijilPrintArea" class="hidden comic-box-yellow p-8 sm:p-12 text-center space-y-6 my-6 relative overflow-hidden">
+                    <div class="flex items-center justify-between border-b-3 border-shinDark pb-4">
+                        <span class="text-xs font-black text-shinRed tracking-widest font-shantell">REKOD PELAWAT PERPUSTAKAAN</span>
+                        <span class="text-xs font-bold text-slate-700" id="sijilDate">Tarikh: 08 Nov 2026</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark tracking-wider">
+                            SIJIL PENGHARGAAN PELAWAT
+                        </h4>
+                        <p class="text-xs text-slate-700 uppercase font-black">Dengan ini disahkan bahawa</p>
+                        
+                        <div class="text-2xl sm:text-4xl font-black text-shinRed border-b-4 border-shinDark inline-block px-8 py-2 font-shantell" id="sijilVisitorName">
+                            NAMA PELAWAT
+                        </div>
+
+                        <p class="text-xs sm:text-sm text-slate-800 font-bold max-w-lg mx-auto leading-relaxed pt-2">
+                            Telah berjaya menyempurnakan <strong>Perpustakaan: Pemimpin Negara dan Sumbangannya</strong>, menguasai 10 Perdana Menteri, serta menyelesaikan Permainan Padanan Dua Seksyen & Kuiz Penilaian.
+                        </p>
+                    </div>
+
+                    <div class="pt-6 flex items-center justify-around border-t-3 border-shinDark">
+                        <div class="text-center">
+                            <span class="text-[10px] text-slate-700 uppercase font-black block">Pencapaian Kuiz</span>
+                            <span class="text-lg font-black text-shinRed" id="sijilScoreBadge">5 / 5 Tepat</span>
+                        </div>
+                        <div class="w-16 h-16 rounded-2xl border-3 border-shinDark bg-shinYellow flex items-center justify-center text-3xl shadow-[3px_3px_0_#111]">
+                            📚
+                        </div>
+                        <div class="text-center">
+                            <span class="text-[10px] text-slate-700 uppercase font-black block">Status Modul</span>
+                            <span class="text-xs font-black text-shinGreen">LULUS CEMERLANG</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-2">
+                    <button onclick="window.print()" id="printBtn" class="hidden comic-btn px-8 py-3.5 rounded-2xl bg-shinGreen text-shinDark font-black text-sm inline-flex items-center gap-2 mx-auto">
+                        <i class="fa-solid fa-print"></i> Cetak / Simpan Sijil ini (PDF)
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-shinRed text-white py-8 px-4 border-t-4 border-shinDark mt-auto relative z-10 shadow-[0_-4px_0_#111]">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs font-bold">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">📚</span>
+                <div>
+                    <span class="font-shantell font-black text-shinYellow block text-sm">PERPUSTAKAAN: PEMIMPIN NEGARA DAN SUMBANGANNYA</span>
+                    <span>Modul Pembelajaran Sejarah Interaktif • KSSR & KSSM</span>
+                </div>
+            </div>
+            <div class="text-shinYellow font-black">
+                Disusun semula dengan gaya ceria & interaktif untuk kefahaman murid Sejarah!
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: DETAIL BIODATA PM -->
+    <div id="pmDetailModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="comic-box-yellow max-w-3xl w-full max-h-[90vh] overflow-y-auto relative my-8 p-6 sm:p-8 space-y-6 static-read-box">
+            <div class="flex items-center justify-between border-b-3 border-shinDark pb-4">
+                <div class="flex items-center gap-3">
+                    <span id="modalPmNum" class="w-9 h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">01</span>
+                    <h3 id="modalPmTitle" class="font-shantell text-lg sm:text-xl font-black text-shinDark truncate max-w-md">Nama Perdana Menteri</h3>
+                </div>
+                <button onclick="closePmModal()" class="comic-btn w-9 h-9 rounded-xl bg-shinRed text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-6" id="modalPmBody"></div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: LOCAL IMAGE GUIDE -->
+    <div id="imageGuideModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="comic-box max-w-lg w-full p-6 sm:p-8 space-y-4 static-read-box">
+            <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
+                <h4 class="font-shantell font-black text-shinRed text-base flex items-center gap-2">
+                    📁 Panduan Gambar Local Computer
+                </h4>
+                <button onclick="closeImageGuideModal()" class="comic-btn w-8 h-8 rounded-lg bg-shinRed text-white flex items-center justify-center">
+                    <i class="fa-solid fa-xmark text-sm"></i>
+                </button>
+            </div>
+            <div class="text-xs sm:text-sm text-slate-800 space-y-3 font-bold leading-relaxed">
+                <p>Untuk memaparkan gambar rasmi pemimpin dari komputer anda sendiri:</p>
+                <div class="bg-shinYellow p-4 rounded-2xl border-3 border-shinDark font-mono text-xs space-y-1 shadow-[3px_3px_0_#111]">
+                    <p>1. Buat folder bernama <strong>images</strong> di sebelah index.html</p>
+                    <p>2. Rename fail gambar kepada:</p>
+                    <p class="text-shinRed font-black">pm1.jpg, pm2.jpg, pm3.jpg, ..., pm10.jpg</p>
+                </div>
+                <p class="text-xs text-slate-600 italic">
+                    *Jika folder/gambar tiada, sistem secara automatik memaparkan ilustrasi SVG sebagai fallback!
+                </p>
+            </div>
+            <button onclick="closeImageGuideModal()" class="comic-btn w-full py-2.5 rounded-xl bg-shinYellow text-shinDark font-black text-xs">
+                Faham & Tutup
+            </button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        const masteryState = {};
+
+        function toggleMastery(itemId, event) {
+            masteryState[itemId] = !masteryState[itemId];
+
+            if (masteryState[itemId]) {
+                if (event) {
+                    triggerStarBurst(event.clientX, event.clientY);
+                } else {
+                    triggerStarBurst(window.innerWidth / 2, window.innerHeight / 2);
+                }
+                playStarChimeSound();
+            }
+            updateMasteryUI();
+        }
+
+        function updateMasteryUI() {
+            const totalKeys = Object.keys(masteryMapDefinitions).length;
+            let masteredCount = 0;
+            Object.keys(masteryMapDefinitions).forEach(k => {
+                if (masteryState[k]) masteredCount++;
+            });
+
+            const badgeText = `${masteredCount} / ${totalKeys} Kuasai`;
+            const badgeEl = document.getElementById('globalMasteryBadgeText');
+            if (badgeEl) badgeEl.innerText = badgeText;
+
+            const progressText = document.getElementById('semakanTotalProgressText');
+            if (progressText) progressText.innerText = badgeText;
+
+            const progressBar = document.getElementById('semakanTotalProgressBar');
+            if (progressBar) {
+                const pct = (masteredCount / totalKeys) * 100;
+                progressBar.style.width = `${pct}%`;
+            }
+
+            renderLobiDuties();
+            renderBiodataCards(perdanaMenteriList);
+            renderSumbanganFull();
+            renderNilaiCards();
+            renderSemakanChecklist();
+        }
+
+        const masteryMapDefinitions = {
+            'duty_1': 'Tugas PM: Menasihati YDPA',
+            'duty_2': 'Tugas PM: Majlis Raja-Raja',
+            'duty_3': 'Tugas PM: Cadangan Kabinet',
+            'duty_4': 'Tugas PM: Pengerusi Kabinet',
+            'duty_5': 'Tugas PM: Ketua Pentadbiran',
+            'duty_6': 'Tugas PM: Pembangunan Rakyat',
+            'duty_7': 'Tugas PM: Hubungan Diplomatik',
+            'duty_8': 'Tugas PM: Pelantikan Duta',
+            
+            'pm_1': 'Pemimpin: Tunku Abdul Rahman (Bapa Kemerdekaan)',
+            'pm_2': 'Pemimpin: Tun Abdul Razak (Bapa Pembangunan)',
+            'pm_3': 'Pemimpin: Tun Hussein Onn (Bapa Perpaduan)',
+            'pm_4': 'Pemimpin: Tun Dr. Mahathir (Bapa Pemodenan)',
+            'pm_5': 'Pemimpin: Tun Abdullah Badawi (Modal Insan)',
+            'pm_6': 'Pemimpin: Dato\' Sri Najib (1Malaysia)',
+            'pm_7': 'Pemimpin: Tun Dr. Mahathir (Penggal 2)',
+            'pm_8': 'Pemimpin: Tan Sri Mahiaddin bin Md Yassin (Fasa PKP)',
+            'pm_9': 'Pemimpin: Dato\' Sri Ismail Sabri (Keluarga Malaysia)',
+            'pm_10': 'Pemimpin: Dato\' Seri Anwar (Malaysia MADANI)',
+
+            'sumb_1': 'Sumbangan: Kemerdekaan & Pembentukan Malaysia',
+            'sumb_2': 'Sumbangan: DEB, FELDA & Rukun Negara',
+            'sumb_3': 'Sumbangan: Perpaduan & PNB Skim ASN',
+            'sumb_4': 'Sumbangan: PROTON, Wawasan 2020 & KLCC',
+            'sumb_5': 'Sumbangan: Islam Hadhari & Pelan Integriti',
+            'sumb_6': 'Sumbangan: 1Malaysia, ETP & MRT/ECRL',
+            'sumb_7': 'Sumbangan: SST & Wawasan Kemakmuran 2030',
+            'sumb_8': 'Sumbangan: PKP COVID-19 & Pakej Rangsangan',
+            'sumb_9': 'Sumbangan: Dasar TVET & Keluarga Malaysia',
+            'sumb_10': 'Sumbangan: Ekonomi MADANI & Tata Kelola',
+
+            'nilai_1': 'Nilai Murni: Patriotisme',
+            'nilai_2': 'Nilai Murni: Perpaduan',
+            'nilai_3': 'Nilai Murni: Keprihatinan',
+            'nilai_4': 'Nilai Murni: Integriti',
+            'nilai_5': 'Nilai Murni: Keberanian Keputusan',
+            'nilai_6': 'Nilai Murni: Pemikiran Kritis'
+        };
+
+        const perdanaMenteriList = [
+            {
+                id: 1,
+                num: "01",
+                name: "Tunku Abdul Rahman Putra Al-Haj Ibni Almarhum Sultan Abdul Hamid Halim Shah",
+                shortName: "Tunku Abdul Rahman",
+                gelaran: "Bapa Kemerdekaan",
+                tempoh: "31 Ogos 1957 – 22 September 1970",
+                era: "kemerdekaan",
+                imagePath: "images/pm1.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#FFD43B"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><path d="M50 16C36 16 34 26 34 26H66C66 26 64 16 50 16Z" fill="#FF4D4D" stroke="#111" stroke-width="2"/><circle cx="42" cy="38" r="3" fill="#111"/><circle cx="58" cy="38" r="3" fill="#111"/><path d="M42 48Q50 54 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#FF4D4D" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "8 Februari 1903 di Alor Setar, Kedah",
+                meninggal: "6 Disember 1990 (Usia 87 tahun)",
+                pendidikanAwal: "Sekolah Rendah Melayu Jalan Baharu, Alor Setar (1909) & Penang Free School",
+                pendidikanTinggi: "Universiti Cambridge, England (Ijazah Undang-Undang / Inner Temple London)",
+                pasangan: "Tun Sharifah Rodziah binti Syed Alwi Barakbah",
+                kerjaya: [
+                    "Penolong Pegawai Daerah Kulim, Kedah",
+                    "Pegawai Daerah Padang Terap, Langkawi & Sungai Petani",
+                    "Ketua Menteri Persekutuan Tanah Melayu (1955)",
+                    "Perdana Menteri Pertama Malaysia (1957–1970)"
+                ],
+                sumbangan: [
+                    "Memimpin Rundingan Kemerdekaan di London pada tahun 1956 bersama wakil Raja-raja Melayu.",
+                    "Mengisytiharkan Kemerdekaan Persekutuan Tanah Melayu pada 31 Ogos 1957 di Stadium Merdeka.",
+                    "Membentuk Malaysia pada 16 September 1963 yang menyatukan Tanah Melayu, Sabah, Sarawak dan Singapura.",
+                    "Menjadi pengasas utama Pertubuhan Kerjasama Islam (OIC) dan Kejohanan Pestabola Merdeka."
+                ],
+                kesan: "Kemerdekaan membolehkan negara mentadbir sendiri secara berdaulat, manakala pembentukan Malaysia menjadi asas kedaulatan negara Malaysia moden.",
+                bidangTag: "Kemerdekaan"
+            },
+            {
+                id: 2,
+                num: "02",
+                name: "Tun Abdul Razak bin Hussein",
+                shortName: "Tun Abdul Razak",
+                gelaran: "Bapa Pembangunan",
+                tempoh: "22 September 1970 – 14 Januari 1976",
+                era: "kemerdekaan",
+                imagePath: "images/pm2.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#69DB7C"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><rect x="34" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><rect x="54" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><path d="M44 48Q50 54 56 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#38D9A9" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "11 Mac 1922 di Pulau Keladi, Pekan, Pahang",
+                meninggal: "14 Januari 1976 (Usia 53 tahun)",
+                pendidikanAwal: "Sekolah Melayu Kampung Jambu Langgar, Pahang & Kolej Melayu Kuala Kangsar (MCKK)",
+                pendidikanTinggi: "Raffles College Singapura & Lincoln's Inn, London (Undang-Undang)",
+                pasangan: "Tun Rahah binti Mohamed Noah",
+                kerjaya: [
+                    "Setiausaha Kerajaan Negeri Pahang",
+                    "Menteri Besar Pahang",
+                    "Timbalan Perdana Menteri Pertama (1957–1970)",
+                    "Perdana Menteri Kedua Malaysia (1970–1976)"
+                ],
+                sumbangan: [
+                    "Memperkenalkan Dasar Ekonomi Baru (DEB 1971) untuk membasmi kemiskinan dan menyusun semula masyarakat.",
+                    "Memperkasa peranan FELDA untuk penempatan dan pembukaan tanah pertanian peneroka.",
+                    "Pengasas Rukun Negara (31 Ogos 1970) sebagai panduan perpaduan kebangsaan.",
+                    "Menubuhkan Penyata Razak 1956 sebagai asas sistem pendidikan kebangsaan."
+                ],
+                kesan: "Berjaya merapatkan jurang sosioekonomi antara kaum dan luar bandar serta membina asas perpaduan nasional.",
+                bidangTag: "Pembangunan"
+            },
+            {
+                id: 3,
+                num: "03",
+                name: "Tun Hussein bin Onn",
+                shortName: "Tun Hussein Onn",
+                gelaran: "Bapa Perpaduan",
+                tempoh: "15 Januari 1976 – 16 Julai 1981",
+                era: "kemerdekaan",
+                imagePath: "images/pm3.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#4DABF7"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><circle cx="42" cy="38" r="3" fill="#111"/><circle cx="58" cy="38" r="3" fill="#111"/><path d="M44 48Q50 54 56 48" stroke="#111" stroke-width="3" fill="none"/><path d="M50 16C36 16 34 26 34 26H66C66 26 64 16 50 16Z" fill="#111"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#38D9A9" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "12 Februari 1922 di Johor Bahru, Johor",
+                meninggal: "29 Mei 1990 (Usia 68 tahun)",
+                pendidikanAwal: "Telok Kurau Primary School Singapura & English College (Maktab Sultan Abu Bakar) Johor",
+                pendidikanTinggi: "Indian Military Academy Dehradun & Lincoln's Inn, London (Undang-Undang)",
+                pasangan: "Tun Suhailah binti Mohamed Noah",
+                kerjaya: [
+                    "Penolong Pegawai Tadbir Segamat, Johor",
+                    "Pegawai Daerah Klang & Kuala Selangor",
+                    "Menteri Pelajaran & Timbalan Perdana Menteri",
+                    "Perdana Menteri Ketiga Malaysia (1976–1981)"
+                ],
+                sumbangan: [
+                    "Memberi penekanan mutlak terhadap perpaduan rakyat berbilang kaum dan keharmonian sosial.",
+                    "Meneruskan pelaksanaan DEB dengan menubuhkan Permodalan Nasional Berhad (PNB) & Skim ASN 1981.",
+                    "Mengukuhkan keselamatan negara dan disiplin integriti perkhidmatan awam."
+                ],
+                kesan: "Penekanan perpaduan dan integriti menjadi benteng kestabilan politik dan pembangunan ekonomi negara.",
+                bidangTag: "Perpaduan"
+            },
+            {
+                id: 4,
+                num: "04",
+                name: "Tun Dr. Mahathir bin Mohamad",
+                shortName: "Tun Dr. Mahathir (Penggal 1)",
+                gelaran: "Bapa Pemodenan",
+                tempoh: "16 Julai 1981 – 30 Oktober 2003",
+                era: "pemodenan",
+                imagePath: "images/pm4.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#FF8787"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><rect x="34" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><rect x="54" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><path d="M42 48Q50 56 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#FF4D4D" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "10 Julai 1925 di Seberang Perak, Alor Setar, Kedah",
+                meninggal: "Masih Berkhidmat / Hidup",
+                pendidikanAwal: "Sekolah Melayu Seberang Perak & Kolej Sultan Abdul Hamid, Alor Setar",
+                pendidikanTinggi: "Kolej Perubatan King Edward VII & Universiti Malaya Singapura (Ijazah Perubatan MBBS)",
+                pasangan: "Tun Dr. Siti Hasmah binti Mohd Ali",
+                kerjaya: [
+                    "Pegawai Perubatan di Alor Setar, Jitra, Langkawi & Perlis",
+                    "Menteri Pelajaran Malaysia",
+                    "Perdana Menteri Keempat Malaysia (1981–2003)"
+                ],
+                sumbangan: [
+                    "Mempercepat perindustrian berat & melancarkan kereta nasional PROTON Saga (1985).",
+                    "Memperkenalkan Wawasan 2020 pada 1991 sebagai matlamat negara maju.",
+                    "Membangunkan mega-infrastruktur: KLIA, Menara KLCC, Koridor Raya Multimedia (MSC) & Putrajaya."
+                ],
+                kesan: "Mengubah ekonomi Malaysia daripada berasaskan pertanian kepada sebuah negara perindustrian moden global.",
+                bidangTag: "Pemodenan"
+            },
+            {
+                id: 5,
+                num: "05",
+                name: "Tun Abdullah bin Ahmad Badawi",
+                shortName: "Tun Abdullah Badawi",
+                gelaran: "Bapa Pembangunan Modal Insan",
+                tempoh: "31 Oktober 2003 – 3 April 2009",
+                era: "pemodenan",
+                imagePath: "images/pm5.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#B197FC"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><circle cx="42" cy="38" r="3" fill="#111"/><circle cx="58" cy="38" r="3" fill="#111"/><path d="M42 48Q50 54 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#91A7FF" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "26 November 1939 di Bayan Lepas, Pulau Pinang",
+                meninggal: "Masih Hidup",
+                pendidikanAwal: "Sekolah Melayu Permatang Bertam & High School Bukit Mertajam / MBS Penang",
+                pendidikanTinggi: "Universiti Malaya (Ijazah Sarjana Muda Pengajian Islam)",
+                pasangan: "Datin Seri Endon binti Dato’ Mahmood / Tun Jeanne binti Abdullah",
+                kerjaya: [
+                    "Setiausaha Majlis Gerakan Negara (MAGERAN)",
+                    "Ketua Pengarah Kementerian Kebudayaan Belia & Sukan",
+                    "Perdana Menteri Kelima Malaysia (2003–2009)"
+                ],
+                sumbangan: [
+                    "Menekankan pembangunan modal insan berpendidikan tinggi & berasaskan nilai.",
+                    "Memperkenalkan pendekatan Islam Hadhari & Pelan Integriti Nasional (PIN 2004).",
+                    "Memperkasa semula sektor pertanian moden & koridor pembangunan wilayah (NCER, ECER, Iskandar)."
+                ],
+                kesan: "Memupuk nilai keilmuan, integriti pentadbiran dan pembangunan seimbang luar bandar.",
+                bidangTag: "Modal Insan"
+            },
+            {
+                id: 6,
+                num: "06",
+                name: "Dato’ Sri Mohd. Najib bin Tun Abdul Razak",
+                shortName: "Dato' Sri Najib Razak",
+                gelaran: "Pengasas Gagasan 1Malaysia",
+                tempoh: "3 April 2009 – 9 Mei 2018",
+                era: "pemodenan",
+                imagePath: "images/pm6.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#FFD43B"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><rect x="34" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><rect x="54" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><path d="M42 48Q50 54 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#4DABF7" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "23 Julai 1953 di Kuala Lipis, Pahang",
+                meninggal: "Masih Hidup",
+                pendidikanAwal: "St. John's Institution, Kuala Lumpur",
+                pendidikanTinggi: "Universiti Nottingham, England (Ijazah Ekonomi Industri)",
+                pasangan: "Datin Sri Rosmah binti Mansor",
+                kerjaya: [
+                    "Pengurus PR Bank Negara & PETRONAS",
+                    "Menteri Besar Pahang (Usia 29 Tahun)",
+                    "Perdana Menteri Keenam Malaysia (2009–2018)"
+                ],
+                sumbangan: [
+                    "Memperkenalkan Gagasan 1Malaysia (Rakyat Didahulukan, Pencapaian Diutamakan).",
+                    "Melaksanakan Program Transformasi Ekonomi (ETP) & Transformasi Kerajaan (GTP).",
+                    "Melancarkan bantuan kewangan BR1M & sistem transit awam MRT, ECRL, Pan Borneo."
+                ],
+                kesan: "Modenisasi pengangkutan awam bandar dan perlindungan bantuan tunai sosial isi rumah.",
+                bidangTag: "Transformasi"
+            },
+            {
+                id: 7,
+                num: "07",
+                name: "Tun Dr. Mahathir bin Mohamad (Penggal Kedua)",
+                shortName: "Tun Dr. Mahathir (Penggal 2)",
+                gelaran: "Peneraju Reformasi Pentadbiran",
+                tempoh: "10 Mei 2018 – 24 Februari 2020",
+                era: "kontemporari",
+                imagePath: "images/pm7.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#FF8787"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><circle cx="42" cy="38" r="3" fill="#111"/><circle cx="58" cy="38" r="3" fill="#111"/><path d="M42 48Q50 54 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#FF4D4D" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "10 Julai 1925 di Seberang Perak, Alor Setar, Kedah",
+                meninggal: "Masih Hidup",
+                pendidikanAwal: "Kolej Perubatan King Edward VII & Universiti Malaya",
+                pendidikanTinggi: "Ijazah Perubatan MBBS",
+                pasangan: "Tun Dr. Siti Hasmah binti Mohd Ali",
+                kerjaya: [
+                    "Pengerusi PETRONAS & Penasihat PROTON",
+                    "Perdana Menteri Ketujuh Malaysia (2018–2020)"
+                ],
+                sumbangan: [
+                    "Mengetuai peralihan kuasa bersejarah pasca PRU-14.",
+                    "Memansuhkan GST pada 2018 dan menggantikannya dengan SST.",
+                    "Memperkenalkan Wawasan Kemakmuran Bersama 2030 (WKB 2030)."
+                ],
+                kesan: "Memulakan semakan dasar tadbir urus persekutuan dan reformasi institusi.",
+                bidangTag: "Transformasi"
+            },
+            {
+                id: 8,
+                num: "08",
+                name: "Tan Sri Mahiaddin bin Md Yassin",
+                shortName: "Tan Sri Muhyiddin Yassin",
+                gelaran: "Pemimpin Fasa Pandemik (PKP)",
+                tempoh: "1 Mac 2020 – 16 Ogos 2021",
+                era: "kontemporari",
+                imagePath: "images/pm8.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#69DB7C"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><circle cx="42" cy="38" r="3" fill="#111"/><circle cx="58" cy="38" r="3" fill="#111"/><path d="M44 48Q50 54 56 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#38D9A9" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "15 Mei 1947 di Muar, Johor",
+                meninggal: "Masih Hidup",
+                pendidikanAwal: "SK Ismail & Sekolah Tinggi Muar, Johor",
+                pendidikanTinggi: "Universiti Malaya (Ijazah Sarjana Muda Ekonomi & Pengajian Melayu)",
+                pasangan: "Puan Sri Noorainee binti Abdul Rahman",
+                kerjaya: [
+                    "Setiausaha Kerajaan Negeri & Menteri Besar Johor",
+                    "Timbalan Perdana Menteri Malaysia",
+                    "Perdana Menteri Kelapan Malaysia (2020–2021)"
+                ],
+                sumbangan: [
+                    "Memimpin pentadbiran semasa Perintah Kawalan Pergerakan (PKP) COVID-19.",
+                    "Memperkenalkan pakej bantuan PRIHATIN, PENJANA & PEMULIH.",
+                    "Menyelaras Program Imunisasi COVID-19 Kebangsaan (PICK)."
+                ],
+                kesan: "Melindungi kesihatan awam dan menyokong kelangsungan perniagaan PKS ketika krisis kesihatan global.",
+                bidangTag: "Pandemik"
+            },
+            {
+                id: 9,
+                num: "09",
+                name: "Dato’ Sri Ismail Sabri bin Yaakob",
+                shortName: "Dato' Sri Ismail Sabri",
+                gelaran: "Pengasas Keluarga Malaysia",
+                tempoh: "20 Ogos 2021 – 24 November 2022",
+                era: "kontemporari",
+                imagePath: "images/pm9.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#4DABF7"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><rect x="34" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><rect x="54" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><path d="M42 48Q50 54 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#38D9A9" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "18 Januari 1960 di Temerloh, Pahang",
+                meninggal: "Masih Hidup",
+                pendidikanAwal: "SK Bangau, SM Air Putih & SM Teknik Kuantan",
+                pendidikanTinggi: "Universiti Malaya (Ijazah Sarjana Muda Undang-Undang LLB)",
+                pasangan: "Datin Seri Muhaini binti Zainal Abidin",
+                kerjaya: [
+                    "Menteri Belia & Sukan, Menteri Kemajuan Luar Bandar, Menteri Pertahanan",
+                    "Perdana Menteri Kesembilan Malaysia (2021–2022)"
+                ],
+                sumbangan: [
+                    "Memperkenalkan Gagasan Keluarga Malaysia berteraskan keterangkuman.",
+                    "Melancarkan Dasar TVET Negara 2030 untuk pendidikan kemahiran.",
+                    "Menerajui pembukaan semula sektor ekonomi secara berfasa pasca-pandemik."
+                ],
+                kesan: "Menstabilkan iklim politik dan memulihkan sektor pekerjaan serta sosial masyarakat.",
+                bidangTag: "Pandemik"
+            },
+            {
+                id: 10,
+                num: "10",
+                name: "Dato’ Seri Anwar bin Ibrahim",
+                shortName: "Dato' Seri Anwar Ibrahim",
+                gelaran: "Peneraju Malaysia MADANI",
+                tempoh: "24 November 2022 – Kini",
+                era: "kontemporari",
+                imagePath: "images/pm10.jpg",
+                svgAvatar: `<svg viewBox="0 0 100 100" class="w-full h-full"><rect width="100" height="100" fill="#FF4D4D"/><circle cx="50" cy="40" r="24" fill="#FFD8A8" stroke="#111" stroke-width="3"/><rect x="34" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><rect x="54" y="32" width="12" height="8" rx="2" fill="none" stroke="#111" stroke-width="2"/><path d="M42 48Q50 56 58 48" stroke="#111" stroke-width="3" fill="none"/><path d="M20 90C20 72 32 62 50 62C68 62 80 72 80 90H20Z" fill="#FFD43B" stroke="#111" stroke-width="3"/></svg>`,
+                dilahirkan: "10 Ogos 1947 di Cherok Tok Kun, Bukit Mertajam, Pulau Pinang",
+                meninggal: "Masih Berkhidmat",
+                pendidikanAwal: "SK Cherok Tok Kun, BM Boys School & Kolej Melayu Kuala Kangsar (MCKK)",
+                pendidikanTinggi: "Universiti Malaya (Ijazah Sarjana Muda Sastera Pengajian Melayu)",
+                pasangan: "Datin Seri Dr. Wan Azizah binti Wan Ismail",
+                kerjaya: [
+                    "Presiden ABIM & Pemimpin Belia",
+                    "Menteri Kebudayaan Belia, Pertanian, Pendidikan, Kewangan, Timbalan PM",
+                    "Perdana Menteri Kesepuluh Malaysia (2022–Kini)"
+                ],
+                sumbangan: [
+                    "Memperkenalkan Gagasan Malaysia MADANI (Kemampanan, Kesejahteraan, Daya Cipta, Hormat, Keyakinan, Ihsan).",
+                    "Mengetengahkan kerangka Ekonomi MADANI untuk meningkatkan daya saing negara.",
+                    "Memperkasa integriti pentadbiran dan menangani isu kos sara hidup rakyat."
+                ],
+                kesan: "Pembaharuan struktur ekonomi, pembanterasan rasuah dan pengukuhan kebajikan sosial.",
+                bidangTag: "MADANI"
+            }
+        ];
+
+        const tugasPmList = [
+            { id: 1, key: 'duty_1', icon: "fa-crown", title: "Menasihati YDPA", desc: "Menasihati Yang di-Pertuan Agong berkaitan dengan pemerintahan persekutuan mengikut lunas Perlembagaan." },
+            { id: 2, key: 'duty_2', icon: "fa-users", title: "Majlis Raja-Raja", desc: "Mengiringi Yang di-Pertuan Agong ke Mesyuarat Majlis Raja-Raja." },
+            { id: 3, key: 'duty_3', icon: "fa-user-check", title: "Cadangan Kabinet", desc: "Mencadangkan senarai Jemaah Menteri untuk dilantik secara rasmi oleh Yang di-Pertuan Agong." },
+            { id: 4, key: 'duty_4', icon: "fa-chair", title: "Pengerusi Kabinet", desc: "Mempengerusikan Mesyuarat Jemaah Menteri (Kabinet) mingguan." },
+            { id: 5, key: 'duty_5', icon: "fa-sitemap", title: "Ketua Pentadbiran", desc: "Menjadi ketua pentadbiran utama yang merancang & menyelaraskan dasar negara." },
+            { id: 6, key: 'duty_6', icon: "fa-chart-line", title: "Pembangunan Rakyat", desc: "Memastikan semua dasar pembangunan ditingkatkan demi kesejahteraan rakyat." },
+            { id: 7, key: 'duty_7', icon: "fa-globe", title: "Hubungan Diplomatik", desc: "Menjalin hubungan diplomatik & persahabatan dengan negara luar." },
+            { id: 8, key: 'duty_8', icon: "fa-passport", title: "Pelantikan Duta", desc: "Mencadangkan pelantikan duta, diplomat & konsulat bagi mewakili negara." }
+        ];
+
+        const nilaiKepimpinanList = [
+            { id: 1, key: 'nilai_1', title: "Patriotisme", desc: "Menghargai kemerdekaan, memelihara kedaulatan dan mencintai identiti negara.", icon: "fa-flag", bgCard: "comic-box-red" },
+            { id: 2, key: 'nilai_2', title: "Perpaduan", desc: "Menghormati perbezaan kaum, agama, budaya serta pandangan rakan-rakan.", icon: "fa-handshake", bgCard: "comic-box-blue" },
+            { id: 3, key: 'nilai_3', title: "Keprihatinan", desc: "Mengambil berat tentang keperluan rakyat dan sentiasa membantu yang memerlukan.", icon: "fa-heart", bgCard: "comic-box-yellow" },
+            { id: 4, key: 'nilai_4', title: "Integriti", desc: "Menjalankan tanggungjawab secara jujur, telus, amanah dan berdisiplin.", icon: "fa-shield-halved", bgCard: "comic-box-green" },
+            { id: 5, key: 'nilai_5', title: "Keberanian Keputusan", desc: "Menilai pilihan secara bijaksana dan bertindak berdasarkan maklumat demi rakyat.", icon: "fa-gavel", bgCard: "comic-box-red" },
+            { id: 6, key: 'nilai_6', title: "Pemikiran Kritis", desc: "Menilai dasar berdasarkan bukti, kesan dan sejarah, bukan sekadar menghafal.", icon: "fa-brain", bgCard: "comic-box-blue" }
+        ];
+
+        const quizData = [
+            {
+                q: "Siapakah Perdana Menteri yang dianugerahkan gelaran 'Bapa Pembangunan' atas sumbangan Dasar Ekonomi Baru (DEB)?",
+                opts: ["Tunku Abdul Rahman", "Tun Abdul Razak Hussein", "Tun Hussein Onn", "Tun Dr. Mahathir Mohamad"],
+                ans: 1,
+                exp: "Tun Abdul Razak Hussein digelar Bapa Pembangunan kerana memperkenalkan DEB 1971 dan memperluas FELDA serta pembangunan luar bandar."
+            },
+            {
+                q: "Apakah peranan utama Perdana Menteri berkaitan dengan Majlis Jemaah Menteri (Kabinet)?",
+                opts: ["Mempengerusikan Mesyuarat Jemaah Menteri", "Melantik Hakim Mahkamah Tinggi", "Menggubal perlembagaan secara tunggal", "Mengisytiharkan darurat negeri"],
+                ans: 0,
+                exp: "Perdana Menteri bertindak mempengerusikan Mesyuarat Jemaah Menteri bagi merancang dan menyelaras dasar negara."
+            },
+            {
+                q: "Gagasan 'Malaysia MADANI' yang menekankan kemampanan dan ihsan telah diperkenalkan pada tahun 2023 oleh siapa?",
+                opts: ["Dato' Sri Ismail Sabri", "Tan Sri Muhyiddin Yassin", "Dato' Seri Anwar Ibrahim", "Tun Abdullah Badawi"],
+                ans: 2,
+                exp: "Gagasan Malaysia MADANI diperkenalkan oleh Dato' Seri Anwar Ibrahim (PM Ke-10) bagi meningkatkan daya saing negara dan kesejahteraan rakyat."
+            },
+            {
+                q: "Wawasan 2020 telah dilancarkan pada tahun 1991 semasa pentadbiran Perdana Menteri yang mana?",
+                opts: ["Tun Dr. Mahathir Mohamad", "Tunku Abdul Rahman", "Tun Hussein Onn", "Dato' Sri Najib Razak"],
+                ans: 0,
+                exp: "Wawasan 2020 dicetuskan oleh Tun Dr. Mahathir Mohamad (Bapa Pemodenan) untuk menjadikan Malaysia sebuah negara maju."
+            },
+            {
+                q: "Rukun Negara telah diisytiharkan pada 31 Ogos 1970 untuk memupuk perpaduan nasional selepas peristiwa apa?",
+                opts: ["Pembentukan Malaysia 1963", "Peristiwa 13 Mei 1969", "Pengisytiharan Kemerdekaan 1957", "Krisis Ekonomi 1998"],
+                ans: 1,
+                exp: "Rukun Negara dibentuk selepas peristiwa 13 Mei 1969 sebagai prinsip panduan untuk perpaduan rakyat berbilang kaum."
+            }
+        ];
+
+        let selectedSecA = null;
+        let selectedSecB = null;
+        let matchedPairIds = new Set();
+        let dualMoves = 0;
+
+        let currentQuizIdx = 0;
+        let quizUserScore = 0;
+        let selectedQuizOpt = null;
+        let bgmAudioCtx = null;
+        let isBgmPlaying = false;
+        let bgmIntervalId = null;
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initStarCanvas();
+            renderLobiDuties();
+            renderBiodataCards(perdanaMenteriList);
+            renderSumbanganFull();
+            renderMatriksFilters();
+            renderMatriksContent('all');
+            renderNilaiCards();
+            renderSemakanChecklist();
+            initDualSectionGame();
+            initQuiz();
+            updateMasteryUI();
+
+            window.addEventListener('click', (e) => {
+                playClickSound();
+            });
+
+            document.querySelectorAll('input, textarea').forEach(el => {
+                el.addEventListener('keydown', (e) => {
+                    playTypingSound();
+                });
+            });
+        });
+
+        function switchRoom(roomId) {
+            document.querySelectorAll('.room-section').forEach(el => el.classList.add('hidden'));
+            const selected = document.getElementById(`room-${roomId}`);
+            if (selected) selected.classList.remove('hidden');
+
+            document.querySelectorAll('.room-tab').forEach(btn => {
+                btn.classList.remove('bg-shinRed', 'bg-shinBlue', 'bg-shinGreen', 'bg-shinPink', 'text-white');
+                btn.classList.add('bg-white', 'text-shinDark');
+            });
+
+            const activeTab = document.getElementById(`tab-${roomId}`);
+            if (activeTab) {
+                activeTab.classList.remove('bg-white', 'text-shinDark');
+                if (roomId === 'lobi') activeTab.classList.add('bg-shinRed', 'text-white');
+                else if (roomId === 'game') activeTab.classList.add('bg-shinBlue', 'text-white');
+                else if (roomId === 'semakan') activeTab.classList.add('bg-shinGreen', 'text-shinDark');
+                else if (roomId === 'kuiz') activeTab.classList.add('bg-shinPink', 'text-white');
+                else activeTab.classList.add('bg-shinRed', 'text-white');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileNav() {
+            document.getElementById('mobileDrawer').classList.toggle('hidden');
+        }
+
+        function openImageGuideModal() {
+            document.getElementById('imageGuideModal').classList.remove('hidden');
+        }
+
+        function closeImageGuideModal() {
+            document.getElementById('imageGuideModal').classList.add('hidden');
+        }
+
+        let starParticles = [];
+        let starCanvasCtx = null;
+
+        function initStarCanvas() {
+            const canvas = document.getElementById('starCanvas');
+            starCanvasCtx = canvas.getContext('2d');
+            resizeStarCanvas();
+            window.addEventListener('resize', resizeStarCanvas);
+            requestAnimationFrame(animateStars);
+        }
+
+        function resizeStarCanvas() {
+            const canvas = document.getElementById('starCanvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        function triggerStarBurst(originX, originY) {
+            const colors = ['#FFD43B', '#FF4D4D', '#4DABF7', '#51CF66', '#FF8787'];
+            for (let i = 0; i < 45; i++) {
+                const angle = Math.random() * Math.PI * 2;
+                const speed = 4 + Math.random() * 12;
+                starParticles.push({
+                    x: originX,
+                    y: originY,
+                    vx: Math.cos(angle) * speed,
+                    vy: Math.sin(angle) * speed - 2,
+                    size: 10 + Math.random() * 18,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * Math.PI,
+                    vRot: (Math.random() - 0.5) * 0.2,
+                    alpha: 1,
+                    life: 0.015 + Math.random() * 0.02
+                });
+            }
+        }
+
+        function drawStarShape(ctx, cx, cy, spikes, outerRadius, innerRadius, color, alpha, rotation) {
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(rotation);
+            ctx.globalAlpha = alpha;
+            ctx.fillStyle = color;
+            ctx.strokeStyle = '#111';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            let rot = Math.PI / 2 * 3;
+            let x = cx;
+            let y = cy;
+            let step = Math.PI / spikes;
+
+            ctx.moveTo(0, -outerRadius);
+            for (let i = 0; i < spikes; i++) {
+                x = Math.cos(rot) * outerRadius;
+                y = Math.sin(rot) * outerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+
+                x = Math.cos(rot) * innerRadius;
+                y = Math.sin(rot) * innerRadius;
+                ctx.lineTo(x, y);
+                rot += step;
+            }
+            ctx.lineTo(0, -outerRadius);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function animateStars() {
+            if (starCanvasCtx) {
+                starCanvasCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+                for (let i = starParticles.length - 1; i >= 0; i--) {
+                    const p = starParticles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += 0.25;
+                    p.rotation += p.vRot;
+                    p.alpha -= p.life;
+
+                    if (p.alpha <= 0) {
+                        starParticles.splice(i, 1);
+                    } else {
+                        drawStarShape(starCanvasCtx, p.x, p.y, 5, p.size, p.size / 2, p.color, p.alpha, p.rotation);
+                    }
+                }
+            }
+            requestAnimationFrame(animateStars);
+        }
+
+        function renderLobiDuties() {
+            const container = document.getElementById('lobiDutiesGrid');
+            const bgStyles = ['comic-box-yellow', 'comic-box-red', 'comic-box-blue', 'comic-box-green'];
+            container.innerHTML = tugasPmList.map((t, idx) => {
+                const isMastered = !!masteryState[t.key];
+                const boxStyle = bgStyles[idx % bgStyles.length];
+                return `
+                    <div class="${boxStyle} p-5 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <div class="w-10 h-10 rounded-xl bg-shinYellow text-shinDark border-2 border-shinDark flex items-center justify-center text-lg font-black shadow-[2px_2px_0_#111]">
+                                    <i class="fa-solid ${t.icon}"></i>
+                                </div>
+                                <span class="text-[10px] font-black text-shinRed uppercase">TUGAS 0${t.id}</span>
+                            </div>
+                            <h4 class="text-sm font-black text-shinDark my-1">${t.title}</h4>
+                            <p class="text-xs text-slate-800 font-bold leading-relaxed">${t.desc}</p>
+                        </div>
+                        <div class="pt-4 border-t-2 border-shinDark mt-4 flex items-center justify-between">
+                            <button onclick="toggleMastery('${t.key}', event)" class="comic-btn px-3 py-1.5 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                                <span>${isMastered ? '⭐ Dikuasai' : '⭐ Kuasai'}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderBiodataCards(list) {
+            const container = document.getElementById('biodataCardsGrid');
+            container.innerHTML = list.map(pm => {
+                const pmKey = `pm_${pm.id}`;
+                const isMastered = !!masteryState[pmKey];
+                return `
+                    <div class="comic-box p-5 flex flex-col justify-between static-read-box">
+                        <div>
+                            <div class="h-56 bg-shinYellow rounded-2xl border-3 border-shinDark relative overflow-hidden flex items-center justify-center shadow-[3px_3px_0_#111]">
+                                <span class="absolute top-3 left-3 z-10 w-9 h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                                    ${pm.num}
+                                </span>
+                                <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-white text-shinDark text-[11px] font-black border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                                    PM ${pm.id}
+                                </span>
+                                
+                                <img src="${pm.imagePath}" alt="${pm.shortName}" 
+                                     class="w-full h-full object-cover"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <div class="hidden w-full h-full">${pm.svgAvatar}</div>
+                            </div>
+
+                            <div class="py-4 space-y-2">
+                                <span class="inline-block px-3 py-1 rounded-full bg-shinRed text-white font-black text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                                    ${pm.gelaran}
+                                </span>
+                                <h3 class="font-shantell text-base font-black text-shinDark">
+                                    ${pm.name}
+                                </h3>
+                                <p class="text-xs text-slate-800 font-bold">
+                                    <i class="fa-solid fa-calendar-days text-shinRed"></i> ${pm.tempoh}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-2">
+                            <button onclick="openPmModal(${pm.id})" class="comic-btn w-full py-2.5 rounded-xl bg-shinBlue text-white font-black text-xs flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-address-card"></i> Lihat Biodata Penuh
+                            </button>
+                            <button onclick="toggleMastery('${pmKey}', event)" class="comic-btn w-full py-2 rounded-xl text-xs font-black flex items-center justify-center gap-2 ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                                <span>${isMastered ? '⭐ Profil Dikuasai' : '⭐ Kuasai Profil Pemimpin'}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function filterBiodataEra(era) {
+            document.querySelectorAll('.bio-era-btn').forEach(btn => {
+                btn.classList.remove('bg-shinRed', 'text-white');
+                btn.classList.add('bg-white', 'text-shinDark');
+            });
+            const active = document.getElementById(`btn-bio-${era}`);
+            if (active) {
+                active.classList.remove('bg-white', 'text-shinDark');
+                active.classList.add('bg-shinRed', 'text-white');
+            }
+
+            const filtered = era === 'all' ? perdanaMenteriList : perdanaMenteriList.filter(p => p.era === era);
+            renderBiodataCards(filtered);
+        }
+
+        function handleBiodataSearch() {
+            const q = document.getElementById('biodataSearchInput').value.trim().toLowerCase();
+            const filtered = perdanaMenteriList.filter(pm => 
+                pm.name.toLowerCase().includes(q) ||
+                pm.gelaran.toLowerCase().includes(q) ||
+                pm.pendidikanAwal.toLowerCase().includes(q) ||
+                pm.pendidikanTinggi.toLowerCase().includes(q)
+            );
+            renderBiodataCards(filtered);
+        }
+
+        function openPmModal(id) {
+            const pm = perdanaMenteriList.find(p => p.id === id);
+            if (!pm) return;
+
+            document.getElementById('modalPmNum').innerText = pm.num;
+            document.getElementById('modalPmTitle').innerText = pm.shortName;
+
+            const body = document.getElementById('modalPmBody');
+            body.innerHTML = `
+                <div class="comic-box-red p-5 flex flex-col sm:flex-row items-center gap-5 static-read-box">
+                    <div class="w-24 h-24 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
+                        <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden w-full h-full">${pm.svgAvatar}</div>
+                    </div>
+                    <div>
+                        <span class="inline-block px-3 py-1 rounded-full bg-shinYellow text-shinDark font-black text-xs mb-1 border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                            ${pm.gelaran}
+                        </span>
+                        <h4 class="font-shantell text-lg font-black text-shinDark">${pm.name}</h4>
+                        <p class="text-xs text-slate-800 font-bold">Tempoh Pentadbiran: ${pm.tempoh}</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-bold">
+                    <div class="bg-white p-4 rounded-2xl border-3 border-shinDark space-y-2 shadow-[3px_3px_0_#111]">
+                        <h5 class="font-black text-shinRed uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-cake-candles text-shinRed"></i> Kelahiran & Pasangan
+                        </h5>
+                        <p><strong>Lahir:</strong> ${pm.dilahirkan}</p>
+                        <p><strong>Status:</strong> ${pm.meninggal}</p>
+                        <p><strong>Pasangan:</strong> ${pm.pasangan}</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border-3 border-shinDark space-y-2 shadow-[3px_3px_0_#111]">
+                        <h5 class="font-black text-shinBlue uppercase flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-shinBlue"></i> Sejarah Pendidikan
+                        </h5>
+                        <p><strong>Awal:</strong> ${pm.pendidikanAwal}</p>
+                        <p><strong>Tinggi:</strong> ${pm.pendidikanTinggi}</p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-2xl border-3 border-shinDark text-xs font-bold shadow-[3px_3px_0_#111]">
+                    <h5 class="font-black text-shinDark uppercase mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-briefcase text-shinYellow"></i> Rekod Kerjaya Penuh
+                    </h5>
+                    <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        ${pm.kerjaya.map(k => `<li class="bg-shinCream p-2.5 rounded-xl border-2 border-shinDark flex items-center gap-2"><i class="fa-solid fa-check text-shinGreen font-black"></i> ${k}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('pmDetailModal').classList.remove('hidden');
+        }
+
+        function closePmModal() {
+            document.getElementById('pmDetailModal').classList.add('hidden');
+        }
+
+        function renderSumbanganFull() {
+            const container = document.getElementById('sumbanganFullContainer');
+            container.innerHTML = perdanaMenteriList.map(pm => {
+                const sumbKey = `sumb_${pm.id}`;
+                const isMastered = !!masteryState[sumbKey];
+                return `
+                    <div class="comic-box p-6 sm:p-8 space-y-4 static-read-box">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-3 border-shinDark pb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-14 h-14 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
+                                    <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    <div class="hidden w-full h-full">${pm.svgAvatar}</div>
+                                </div>
+                                <div>
+                                    <span class="text-xs font-black text-shinRed uppercase">PM KE-${pm.id} • ${pm.gelaran}</span>
+                                    <h3 class="font-shantell text-lg sm:text-xl font-black text-shinDark">${pm.name}</h3>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <button onclick="toggleMastery('${sumbKey}', event)" class="comic-btn px-4 py-2 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                                    ${isMastered ? '⭐ Dikuasai' : '⭐ Kuasai'}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-black text-slate-700 uppercase">Sumbangan Utama Pentadbiran:</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                ${pm.sumbangan.map(s => `
+                                    <div class="bg-shinCream p-4 rounded-2xl border-2 border-shinDark text-xs font-bold text-slate-900 flex items-start gap-3 shadow-[2px_2px_0_#111]">
+                                        <i class="fa-solid fa-star text-shinYellow mt-0.5 text-sm"></i>
+                                        <span class="leading-relaxed">${s}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <div class="bg-shinYellow p-4 rounded-2xl border-3 border-shinDark text-xs font-bold text-slate-900 space-y-1 shadow-[3px_3px_0_#111]">
+                            <span class="font-black text-shinRed uppercase block">Impak Sosioekonomi & Sejarah:</span>
+                            <p class="leading-relaxed">${pm.kesan}</p>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        const matriksCategories = [
+            { id: 'all', label: 'Semua Bidang' },
+            { id: 'Kemerdekaan', label: '🇲🇾 Kemerdekaan' },
+            { id: 'Pembangunan', label: '🌾 Pembangunan' },
+            { id: 'Perpaduan', label: '🤝 Perpaduan' },
+            { id: 'Pemodenan', label: '🚀 Pemodenan' },
+            { id: 'Modal Insan', label: '🎓 Modal Insan' },
+            { id: 'Transformasi', label: '💳 Transformasi' },
+            { id: 'Pandemik', label: '🏥 Pandemik' },
+            { id: 'MADANI', label: '✨ MADANI' }
+        ];
+
+        function renderMatriksFilters() {
+            const container = document.getElementById('matriksFilterButtons');
+            container.innerHTML = matriksCategories.map(c => `
+                <button onclick="renderMatriksContent('${c.id}')" id="m-btn-${c.id}" 
+                        class="m-filter-btn comic-btn px-4 py-2 rounded-xl text-xs font-black bg-white text-shinDark">
+                    ${c.label}
+                </button>
+            `).join('');
+        }
+
+        function renderMatriksContent(catId) {
+            document.querySelectorAll('.m-filter-btn').forEach(b => {
+                b.classList.remove('bg-shinRed', 'text-white');
+                b.classList.add('bg-white', 'text-shinDark');
+            });
+            const active = document.getElementById(`m-btn-${catId}`);
+            if (active) {
+                active.classList.remove('bg-white', 'text-shinDark');
+                active.classList.add('bg-shinRed', 'text-white');
+            }
+
+            const matched = catId === 'all' ? perdanaMenteriList : perdanaMenteriList.filter(p => p.bidangTag === catId);
+            const display = document.getElementById('matriksDisplayArea');
+            display.innerHTML = `
+                <div class="flex items-center justify-between pb-4 border-b-3 border-shinDark">
+                    <h4 class="font-shantell text-lg font-black text-shinDark">
+                        Analisis Bidang: <span class="text-shinRed">${catId === 'all' ? 'Semua Bidang Pentadbiran' : catId}</span>
+                    </h4>
+                    <span class="text-xs font-black text-slate-700">${matched.length} Tokoh</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    ${matched.map(pm => `
+                        <div class="bg-shinCream p-4 rounded-2xl border-3 border-shinDark space-y-2 shadow-[3px_3px_0_#111]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl overflow-hidden bg-shinYellow border-2 border-shinDark flex-shrink-0">
+                                    <img src="${pm.imagePath}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                    <div class="hidden w-full h-full">${pm.svgAvatar}</div>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-black text-shinRed uppercase">${pm.gelaran}</span>
+                                    <h5 class="text-sm font-black text-shinDark">${pm.shortName}</h5>
+                                </div>
+                            </div>
+                            <p class="text-xs text-slate-800 font-bold bg-white p-3 rounded-xl border-2 border-shinDark leading-relaxed">
+                                <strong>Fokus Utama:</strong> ${pm.sumbangan[0]}
+                            </p>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+
+        function renderNilaiCards() {
+            const container = document.getElementById('nilaiCardsGrid');
+            container.innerHTML = nilaiKepimpinanList.map(v => {
+                const isMastered = !!masteryState[v.key];
+                return `
+                    <div class="h-64 perspective-1000 cursor-pointer group" onclick="this.querySelector('.card-inner').classList.toggle('rotate-y-180')">
+                        <div class="card-inner relative w-full h-full transform-style-3d transition-transform duration-700 rounded-3xl">
+                            <div class="absolute inset-0 ${v.bgCard} p-6 flex flex-col items-center justify-between text-center backface-hidden">
+                                <div class="w-16 h-16 rounded-2xl bg-shinYellow border-3 border-shinDark flex items-center justify-center text-3xl text-shinDark shadow-[3px_3px_0_#111]">
+                                    <i class="fa-solid ${v.icon}"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-shantell text-lg font-black text-shinDark mb-1">${v.title}</h4>
+                                    <span class="text-[11px] font-black text-shinRed flex items-center justify-center gap-1">
+                                        Klik untuk putar 3D <i class="fa-solid fa-rotate"></i>
+                                    </span>
+                                </div>
+                                <button onclick="event.stopPropagation(); toggleMastery('${v.key}', event)" class="comic-btn px-3 py-1 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                                    ${isMastered ? '⭐ Dikuasai' : '⭐ Kuasai Nilai'}
+                                </button>
+                            </div>
+                            <div class="absolute inset-0 bg-shinRed text-white rounded-3xl p-6 flex flex-col items-center justify-center text-center rotate-y-180 backface-hidden border-3 border-shinDark shadow-[5px_5px_0_#111]">
+                                <i class="fa-solid ${v.icon} text-3xl mb-3 text-shinYellow"></i>
+                                <h4 class="font-shantell text-base font-black mb-2">${v.title}</h4>
+                                <p class="text-xs font-bold leading-relaxed">${v.desc}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderSemakanChecklist() {
+            const container = document.getElementById('semakanChecklistGrid');
+            if (!container) return;
+
+            const categories = [
+                { title: '🏛️ Tugas Perdana Menteri (8 Items)', prefix: 'duty_' },
+                { title: '👤 Profil Pemimpin Negara (10 Items)', prefix: 'pm_' },
+                { title: '🚀 Sumbangan & Impak (10 Items)', prefix: 'sumb_' },
+                { title: '⭐ Nilai Murni Kepimpinan (6 Items)', prefix: 'nilai_' }
+            ];
+
+            container.innerHTML = categories.map(cat => {
+                const itemKeys = Object.keys(masteryMapDefinitions).filter(k => k.startsWith(cat.prefix));
+                const masteredCat = itemKeys.filter(k => masteryState[k]).length;
+
+                return `
+                    <div class="bg-white p-5 rounded-2xl border-3 border-shinDark space-y-3 shadow-[4px_4px_0_#111]">
+                        <div class="flex items-center justify-between border-b-3 border-shinDark pb-2">
+                            <h4 class="font-black text-sm text-shinDark">${cat.title}</h4>
+                            <span class="text-xs font-black text-shinRed">${masteredCat} / ${itemKeys.length}</span>
+                        </div>
+                        <div class="space-y-2 max-h-60 overflow-y-auto pr-1">
+                            ${itemKeys.map(k => {
+                                const isChecked = !!masteryState[k];
+                                return `
+                                    <div onclick="toggleMastery('${k}', event)" class="p-2.5 rounded-xl border-2 border-shinDark ${isChecked ? 'bg-shinGreen text-shinDark' : 'bg-shinCream text-slate-900'} text-xs font-bold flex items-center justify-between cursor-pointer hover:bg-shinYellow transition-all">
+                                        <span class="truncate pr-2">${masteryMapDefinitions[k]}</span>
+                                        <span class="text-base">${isChecked ? '⭐' : '⚪'}</span>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function initDualSectionGame() {
+            selectedSecA = null;
+            selectedSecB = null;
+            matchedPairIds.clear();
+            dualMoves = 0;
+
+            document.getElementById('gameMatchedScore').innerText = '0 / 10';
+            document.getElementById('gameMovesCount').innerText = '0';
+            document.getElementById('secAStatus').innerText = 'Belum Dipilih';
+            document.getElementById('secBStatus').innerText = 'Belum Dipilih';
+
+            const alertBanner = document.getElementById('gameAlertBanner');
+            alertBanner.classList.add('hidden');
+
+            let listA = [...perdanaMenteriList].sort(() => Math.random() - 0.5);
+            let listB = [...perdanaMenteriList].sort(() => Math.random() - 0.5);
+
+            const gridA = document.getElementById('gridSectionA');
+            gridA.innerHTML = listA.map(pm => `
+                <div onclick="selectSecACard(${pm.id})" id="card-secA-${pm.id}" 
+                     class="secA-card comic-btn p-3 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center">
+                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-shinDark mb-2 bg-shinYellow">
+                        <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <div class="hidden w-full h-full">${pm.svgAvatar}</div>
+                    </div>
+                    <span class="text-[10px] font-black text-shinRed uppercase">PM ${pm.id}</span>
+                    <h5 class="text-xs font-black leading-tight mt-0.5">${pm.shortName}</h5>
+                </div>
+            `).join('');
+
+            const gridB = document.getElementById('gridSectionB');
+            gridB.innerHTML = listB.map(pm => `
+                <div onclick="selectSecBCard(${pm.id})" id="card-secB-${pm.id}" 
+                     class="secB-card comic-btn p-4 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center min-h-[210px] justify-between">
+                    <div class="w-9 h-9 rounded-full bg-shinBlue text-white font-bold flex items-center justify-center text-sm mb-1 border border-shinDark flex-shrink-0">
+                        📜
+                    </div>
+                    <span class="text-[11px] font-black text-shinBlue uppercase tracking-wide px-2 py-0.5 bg-shinCream rounded-full border border-shinDark">${pm.gelaran}</span>
+                    <p class="text-xs font-bold text-slate-900 leading-relaxed mt-2 whitespace-normal break-words">${pm.sumbangan[0]}</p>
+                </div>
+            `).join('');
+        }
+
+        function selectSecACard(id) {
+            if (matchedPairIds.has(id)) return;
+            
+            document.querySelectorAll('.secA-card').forEach(el => {
+                if (!matchedPairIds.has(parseInt(el.id.replace('card-secA-', '')))) {
+                    el.classList.remove('bg-shinRed', 'text-white');
+                    el.classList.add('bg-white', 'text-shinDark');
+                }
+            });
+
+            selectedSecA = id;
+            const cardEl = document.getElementById(`card-secA-${id}`);
+            cardEl.classList.remove('bg-white', 'text-shinDark');
+            cardEl.classList.add('bg-shinRed', 'text-white');
+
+            const pm = perdanaMenteriList.find(p => p.id === id);
+            document.getElementById('secAStatus').innerText = `Dipilih: ${pm.shortName}`;
+
+            checkDualMatch();
+        }
+
+        function selectSecBCard(id) {
+            if (matchedPairIds.has(id)) return;
+
+            document.querySelectorAll('.secB-card').forEach(el => {
+                if (!matchedPairIds.has(parseInt(el.id.replace('card-secB-', '')))) {
+                    el.classList.remove('bg-shinBlue', 'text-white');
+                    el.classList.add('bg-white', 'text-shinDark');
+                }
+            });
+
+            selectedSecB = id;
+            const cardEl = document.getElementById(`card-secB-${id}`);
+            cardEl.classList.remove('bg-white', 'text-shinDark');
+            cardEl.classList.add('bg-shinBlue', 'text-white');
+
+            const pm = perdanaMenteriList.find(p => p.id === id);
+            document.getElementById('secBStatus').innerText = `Dipilih: ${pm.gelaran}`;
+
+            checkDualMatch();
+        }
+
+        function checkDualMatch() {
+            if (selectedSecA === null || selectedSecB === null) return;
+
+            dualMoves++;
+            document.getElementById('gameMovesCount').innerText = dualMoves;
+
+            const banner = document.getElementById('gameAlertBanner');
+
+            if (selectedSecA === selectedSecB) {
+                playChimeSound();
+                confetti({ particleCount: 70, spread: 60, origin: { y: 0.6 } });
+
+                matchedPairIds.add(selectedSecA);
+                document.getElementById('gameMatchedScore').innerText = `${matchedPairIds.size} / 10`;
+
+                const cardA = document.getElementById(`card-secA-${selectedSecA}`);
+                const cardB = document.getElementById(`card-secB-${selectedSecB}`);
+
+                cardA.className = "p-3 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111]";
+                cardB.className = "p-4 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111] min-h-[210px] justify-between";
+
+                banner.className = "p-4 rounded-2xl text-center font-black text-sm bg-shinGreen text-shinDark border-3 border-shinDark block animate-bounce shadow-[4px_4px_0_#111]";
+                banner.innerText = "Tahniah! Padanan Tepat! 🎉";
+
+                selectedSecA = null;
+                selectedSecB = null;
+                document.getElementById('secAStatus').innerText = 'Belum Dipilih';
+                document.getElementById('secBStatus').innerText = 'Belum Dipilih';
+
+                if (matchedPairIds.size === 10) {
+                    playVictorySound();
+                    setTimeout(() => {
+                        alert(`🎉 SYABAS KEPADA PELAWAT! Anda berjaya memadankan kesemua 10 Perdana Menteri dalam ${dualMoves} cubaan!`);
+                    }, 500);
+                }
+            } else {
+                playBuzzSound();
+
+                const cardA = document.getElementById(`card-secA-${selectedSecA}`);
+                const cardB = document.getElementById(`card-secB-${selectedSecB}`);
+
+                cardA.classList.add('animate-shake');
+                cardB.classList.add('animate-shake');
+
+                banner.className = "p-4 rounded-2xl text-center font-black text-sm bg-shinRed text-white border-3 border-shinDark block shadow-[4px_4px_0_#111]";
+                banner.innerText = "Try Again! ❌ Cubaan Padanan Tidak Tepat!";
+
+                setTimeout(() => {
+                    cardA.classList.remove('animate-shake', 'bg-shinRed', 'text-white');
+                    cardA.classList.add('bg-white', 'text-shinDark');
+
+                    cardB.classList.remove('animate-shake', 'bg-shinBlue', 'text-white');
+                    cardB.classList.add('bg-white', 'text-shinDark');
+
+                    selectedSecA = null;
+                    selectedSecB = null;
+                    document.getElementById('secAStatus').innerText = 'Belum Dipilih';
+                    document.getElementById('secBStatus').innerText = 'Belum Dipilih';
+                    banner.classList.add('hidden');
+                }, 1000);
+            }
+        }
+
+        function resetDualSectionGame() {
+            initDualSectionGame();
+        }
+
+        function initQuiz() {
+            currentQuizIdx = 0;
+            quizUserScore = 0;
+            selectedQuizOpt = null;
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const q = quizData[currentQuizIdx];
+            selectedQuizOpt = null;
+
+            document.getElementById('quizScoreDisplay').innerText = `${quizUserScore} / ${quizData.length}`;
+            const pct = ((currentQuizIdx + 1) / quizData.length) * 100;
+            document.getElementById('quizMeterBar').style.width = `${pct}%`;
+
+            const feedback = document.getElementById('quizFeedbackBox');
+            feedback.classList.add('hidden');
+            document.getElementById('nextQuizBtn').classList.add('hidden');
+
+            const body = document.getElementById('quizQuestionBody');
+            body.innerHTML = `
+                <div class="space-y-4 font-bold">
+                    <span class="text-xs font-black text-shinRed uppercase">SOALAN 0${currentQuizIdx + 1} DARIPADA 0${quizData.length}</span>
+                    <h4 class="text-base sm:text-lg font-black text-shinDark leading-snug">${q.q}</h4>
+                    <div class="grid grid-cols-1 gap-3 pt-2">
+                        ${q.opts.map((opt, idx) => `
+                            <button onclick="selectQuizOption(${idx})" id="quiz-opt-${idx}" 
+                                    class="comic-btn w-full text-left p-4 rounded-2xl bg-white text-shinDark text-xs sm:text-sm font-bold flex items-center justify-between">
+                                <span><strong class="text-shinRed mr-2">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
+                                <i class="fa-regular fa-circle text-slate-400"></i>
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+        }
+
+        function selectQuizOption(idx) {
+            if (selectedQuizOpt !== null) return;
+            selectedQuizOpt = idx;
+
+            const q = quizData[currentQuizIdx];
+            const isCorrect = (idx === q.ans);
+            const feedback = document.getElementById('quizFeedbackBox');
+
+            document.querySelectorAll('#quizQuestionBody button').forEach((btn, i) => {
+                btn.disabled = true;
+                if (i === q.ans) {
+                    btn.className = "comic-btn w-full text-left p-4 rounded-2xl bg-shinGreen text-shinDark text-xs sm:text-sm font-black flex items-center justify-between";
+                } else if (i === idx && !isCorrect) {
+                    btn.className = "comic-btn w-full text-left p-4 rounded-2xl bg-shinRed text-white text-xs sm:text-sm font-black flex items-center justify-between";
+                }
+            });
+
+            if (isCorrect) {
+                quizUserScore++;
+                playChimeSound();
+                feedback.innerHTML = `
+                    <div class="flex items-start gap-3 text-shinDark">
+                        <i class="fa-solid fa-circle-check text-2xl text-shinGreen mt-0.5"></i>
+                        <div>
+                            <strong class="block font-black text-base mb-0.5">Tahniah! Jawapan Tepat! 🎉</strong>
+                            <p>${q.exp}</p>
+                        </div>
+                    </div>
+                `;
+                feedback.className = "p-4 rounded-2xl text-xs sm:text-sm font-bold bg-shinGreen text-shinDark border-3 border-shinDark mt-6 shadow-[3px_3px_0_#111]";
+            } else {
+                playBuzzSound();
+                feedback.innerHTML = `
+                    <div class="flex items-start gap-3 text-white">
+                        <i class="fa-solid fa-circle-xmark text-2xl text-white mt-0.5"></i>
+                        <div>
+                            <strong class="block font-black text-base mb-0.5">Kurang Tepat! 💡</strong>
+                            <p>${q.exp}</p>
+                        </div>
+                    </div>
+                `;
+                feedback.className = "p-4 rounded-2xl text-xs sm:text-sm font-bold bg-shinRed text-white border-3 border-shinDark mt-6 shadow-[3px_3px_0_#111]";
+            }
+
+            feedback.classList.remove('hidden');
+            document.getElementById('nextQuizBtn').classList.remove('hidden');
+            document.getElementById('quizScoreDisplay').innerText = `${quizUserScore} / ${quizData.length}`;
+        }
+
+        function nextQuizQuestion() {
+            currentQuizIdx++;
+            if (currentQuizIdx < quizData.length) {
+                renderQuizQuestion();
+            } else {
+                document.getElementById('quizQuestionBody').innerHTML = `
+                    <div class="text-center py-8 space-y-4">
+                        <div class="w-16 h-16 rounded-2xl bg-shinYellow text-shinDark text-3xl font-black flex items-center justify-center mx-auto border-3 border-shinDark shadow-[3px_3px_0_#111]">
+                            🏆
+                        </div>
+                        <h4 class="font-shantell text-2xl font-black text-shinDark">Anda Telah Menyelesaikan Kuiz!</h4>
+                        <p class="text-sm font-bold text-slate-800">Skor Akhir Anda: <strong class="text-shinRed text-xl font-black">${quizUserScore} / ${quizData.length}</strong></p>
+                        <button onclick="initQuiz()" class="comic-btn px-6 py-2.5 rounded-xl bg-shinYellow text-shinDark font-black text-xs">
+                            Cuba Kuiz Sekali Lagi
+                        </button>
+                    </div>
+                `;
+                document.getElementById('nextQuizBtn').classList.add('hidden');
+                document.getElementById('quizFeedbackBox').classList.add('hidden');
+            }
+        }
+
+        function submitKbat() {
+            const txt = document.getElementById('kbatAnswerText').value.trim();
+            const fb = document.getElementById('kbatFeedback');
+            if (txt.length < 5) {
+                fb.innerText = "Sila tulis jawapan KBAT anda terlebih dahulu.";
+                fb.className = "text-xs font-black text-shinRed mt-2 block";
+            } else {
+                fb.innerText = "✓ Pandangan KBAT anda telah direkodkan dengan jayanya!";
+                fb.className = "text-xs font-black text-shinGreen mt-2 block";
+            }
+        }
+
+        function generateCertificate() {
+            const name = document.getElementById('visitorNameInput').value.trim();
+            if (!name) {
+                alert("Sila taip nama penuh anda terlebih dahulu.");
+                return;
+            }
+
+            document.getElementById('sijilVisitorName').innerText = name.toUpperCase();
+            document.getElementById('sijilScoreBadge').innerText = `${quizUserScore} / ${quizData.length} Tepat`;
+            
+            const today = new Date();
+            document.getElementById('sijilDate').innerText = `Tarikh: ${today.toLocaleDateString('ms-MY')}`;
+
+            document.getElementById('sijilPrintArea').classList.remove('hidden');
+            document.getElementById('printBtn').classList.remove('hidden');
+
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.7 } });
+        }
+
+        function playClickSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(250, ctx.currentTime + 0.04);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.04);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.04);
+            } catch (e) {}
+        }
+
+        function playTypingSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                osc.frequency.setValueAtTime(800 + Math.random() * 200, ctx.currentTime);
+                gain.gain.setValueAtTime(0.04, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.03);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.03);
+            } catch (e) {}
+        }
+
+        function toggleBgmMusic() {
+            const btnText = document.getElementById('bgmBtnText');
+            if (isBgmPlaying) {
+                isBgmPlaying = false;
+                if (bgmIntervalId) clearInterval(bgmIntervalId);
+                btnText.innerText = "BGM: MATI";
+            } else {
+                isBgmPlaying = true;
+                btnText.innerText = "BGM: HIDUP";
+                playBgmLoop();
+                bgmIntervalId = setInterval(playBgmLoop, 3200);
+            }
+        }
+
+        function playBgmLoop() {
+            if (!isBgmPlaying) return;
+            try {
+                if (!bgmAudioCtx) bgmAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [523.25, 659.25, 783.99, 1046.50, 783.99, 659.25, 523.25, 659.25];
+                notes.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        if (!isBgmPlaying) return;
+                        const osc = bgmAudioCtx.createOscillator();
+                        const gain = bgmAudioCtx.createGain();
+                        osc.type = 'sine';
+                        osc.frequency.value = freq;
+                        gain.gain.setValueAtTime(0.02, bgmAudioCtx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, bgmAudioCtx.currentTime + 0.3);
+                        osc.connect(gain);
+                        gain.connect(bgmAudioCtx.destination);
+                        osc.start();
+                        osc.stop(bgmAudioCtx.currentTime + 0.3);
+                    }, idx * 400);
+                });
+            } catch (e) {}
+        }
+
+        function playStarChimeSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const freqs = [1046.50, 1318.51, 1567.98, 2093.00];
+                freqs.forEach((freq, idx) => {
+                    setTimeout(() => {
+                        const osc = ctx.createOscillator();
+                        const gain = ctx.createGain();
+                        osc.type = 'triangle';
+                        osc.frequency.value = freq;
+                        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+                        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+                        osc.connect(gain);
+                        gain.connect(ctx.destination);
+                        osc.start();
+                        osc.stop(ctx.currentTime + 0.25);
+                    }, idx * 60);
+                });
+            } catch (e) {}
+        }
+
+        function playChimeSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc1 = ctx.createOscillator();
+                const g1 = ctx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.value = 987.77;
+                g1.gain.setValueAtTime(0.15, ctx.currentTime);
+                g1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+                osc1.connect(g1);
+                g1.connect(ctx.destination);
+                osc1.start();
+                osc1.stop(ctx.currentTime + 0.2);
+
+                setTimeout(() => {
+                    const osc2 = ctx.createOscillator();
+                    const g2 = ctx.createGain();
+                    osc2.type = 'sine';
+                    osc2.frequency.value = 1318.51;
+                    g2.gain.setValueAtTime(0.15, ctx.currentTime);
+                    g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+                    osc2.connect(g2);
+                    g2.connect(ctx.destination);
+                    osc2.start();
+                    osc2.stop(ctx.currentTime + 0.35);
+                }, 100);
+            } catch (e) {}
+        }
+
+        function playBuzzSound() {
+            try {
+                const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = ctx.createOscillator();
+                const g = ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.value = 180;
+                g.gain.setValueAtTime(0.15, ctx.currentTime);
+                g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+                osc.connect(g);
+                g.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.3);
+            } catch (e) {}
+        }
+
+        function playVictorySound() {
+            playChimeSound();
+            setTimeout(playChimeSound, 250);
+        }
+
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const msg = new SpeechSynthesisUtterance(text);
+                msg.lang = 'ms-MY';
+                msg.rate = 0.95;
+                window.speechSynthesis.speak(msg);
+            }
+        }
+
+        function toggleAudioNarration() {
+            const btnText = document.getElementById('audioBtnText');
+            if (window.speechSynthesis && window.speechSynthesis.speaking) {
+                window.speechSynthesis.cancel();
+                btnText.innerText = "Suara Panduan";
+            } else {
+                speakText("Selamat Datang ke Perpustakaan Pemimpin Negara dan Sumbangannya! Sila terokai dewan pameran di menu atas.");
+                btnText.innerText = "Berhentikan Suara";
+            }
+        }
+    </script>
+</body>
+</html>
