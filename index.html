@@ -2,7 +2,7 @@
 <html lang="ms" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Perpustakaan: Pemimpin Negara dan Sumbangannya</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -51,6 +51,8 @@
             min-height: 100vh;
             color: #111111;
             overflow-x: hidden;
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 
         /* Comic Chunky Border & Offset Shadow Utility with Responsive Interactive Hover Movement */
@@ -100,15 +102,22 @@
         }
 
         /* Responsive Mouse Hover Micro-Movement (Except static reading boxes) */
-        .comic-box:hover:not(.static-read-box), 
-        .comic-box-yellow:hover:not(.static-read-box), 
-        .comic-box-red:hover:not(.static-read-box), 
-        .comic-box-blue:hover:not(.static-read-box), 
-        .comic-box-green:hover:not(.static-read-box) {
-            transform: translateY(-12px) scale(1.035) rotate(-1deg);
-            box-shadow: 10px 14px 0px #111111;
-            animation-play-state: paused;
-            z-index: 20;
+        @media (hover: hover) and (pointer: fine) {
+            .comic-box:hover:not(.static-read-box), 
+            .comic-box-yellow:hover:not(.static-read-box), 
+            .comic-box-red:hover:not(.static-read-box), 
+            .comic-box-blue:hover:not(.static-read-box), 
+            .comic-box-green:hover:not(.static-read-box) {
+                transform: translateY(-12px) scale(1.035) rotate(-1deg);
+                box-shadow: 10px 14px 0px #111111;
+                animation-play-state: paused;
+                z-index: 20;
+            }
+
+            .comic-btn:hover {
+                transform: translateY(-6px) scale(1.04) rotate(1deg);
+                box-shadow: 7px 9px 0px #111111;
+            }
         }
 
         /* Static reading boxes (No float animation & movement) */
@@ -123,14 +132,12 @@
             box-shadow: 4px 4px 0px #111111;
             transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
             font-weight: 700;
+            touch-action: manipulation;
         }
-        .comic-btn:hover {
-            transform: translateY(-6px) scale(1.04) rotate(1deg);
-            box-shadow: 7px 9px 0px #111111;
-        }
+        
         .comic-btn:active {
-            transform: translate(2px, 2px) scale(0.98);
-            box-shadow: 2px 2px 0px #111111;
+            transform: translate(2px, 2px) scale(0.98) !important;
+            box-shadow: 2px 2px 0px #111111 !important;
         }
 
         /* Gentle Float Animation */
@@ -193,18 +200,18 @@
     <!-- HEADER: PERPUSTAKAAN STYLE BANNER -->
     <header class="bg-shinRed border-b-4 border-shinDark sticky top-0 z-40 shadow-[0_5px_0_#111]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-24">
+            <div class="flex items-center justify-between h-20 sm:h-24">
                 
                 <!-- Logo & Title -->
-                <div class="flex items-center gap-3">
-                    <div class="w-14 h-14 rounded-2xl bg-shinYellow border-3 border-shinDark flex items-center justify-center text-3xl shadow-[3px_3px_0_#111] rotate-[-4deg] hover:rotate-[6deg] transition-transform">
+                <div class="flex items-center gap-2 sm:gap-3">
+                    <div class="w-10 h-10 sm:w-14 sm:h-14 rounded-2xl bg-shinYellow border-3 border-shinDark flex items-center justify-center text-xl sm:text-3xl shadow-[3px_3px_0_#111] rotate-[-4deg] hover:rotate-[6deg] transition-transform flex-shrink-0">
                         📚
                     </div>
                     <div>
-                        <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-shinYellow border-2 border-shinDark text-[11px] font-bold text-shinDark shadow-[2px_2px_0_#111]">
+                        <div class="inline-flex items-center gap-1.5 px-2 sm:px-3 py-0.5 rounded-full bg-shinYellow border-2 border-shinDark text-[9px] sm:text-[11px] font-bold text-shinDark shadow-[2px_2px_0_#111]">
                             <span>⭐ Perpustakaan Sejarah Interaktif</span>
                         </div>
-                        <h1 class="font-shantell text-xl sm:text-2xl font-black text-white tracking-wide leading-tight drop-shadow-[2px_2px_0_#111]">
+                        <h1 class="font-shantell text-sm sm:text-2xl font-black text-white tracking-wide leading-tight drop-shadow-[2px_2px_0_#111]">
                             PERPUSTAKAAN: PEMIMPIN NEGARA DAN SUMBANGANNYA
                         </h1>
                     </div>
@@ -232,8 +239,8 @@
                 </div>
 
                 <!-- Mobile Navigation Button -->
-                <button onclick="toggleMobileNav()" class="lg:hidden p-3 rounded-2xl bg-shinYellow text-shinDark border-3 border-shinDark shadow-[3px_3px_0_#111]">
-                    <i class="fa-solid fa-bars text-xl" id="navIcon"></i>
+                <button onclick="toggleMobileNav()" class="lg:hidden p-2.5 rounded-2xl bg-shinYellow text-shinDark border-3 border-shinDark shadow-[3px_3px_0_#111]">
+                    <i class="fa-solid fa-bars text-lg sm:text-xl" id="navIcon"></i>
                 </button>
             </div>
         </div>
@@ -267,6 +274,10 @@
 
         <!-- Mobile Drawer Menu -->
         <div id="mobileDrawer" class="hidden lg:hidden bg-shinYellow border-t-3 border-shinDark px-4 py-4 space-y-2 text-sm font-bold">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b-2 border-shinDark">
+                <span class="text-xs font-black uppercase text-shinDark">Menu Utama Perpustakaan</span>
+                <span id="mobileMasteryBadgeText" class="text-xs font-black text-shinRed px-2 py-1 bg-white rounded-lg border border-shinDark">0 / 34 Kuasai</span>
+            </div>
             <button onclick="switchRoom('lobi'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-white text-shinDark">
                 🏛️ Bilik 1: Peranan & Tugas PM
             </button>
@@ -288,39 +299,49 @@
             <button onclick="switchRoom('kuiz'); toggleMobileNav();" class="w-full text-left px-4 py-3 rounded-xl comic-btn bg-shinPink text-white">
                 📝 Bilik 7: Uji Minda & Sijil Pelawat
             </button>
+
+            <!-- Quick Audio Controls for Mobile -->
+            <div class="pt-3 border-t-2 border-shinDark flex items-center justify-between gap-2">
+                <button onclick="toggleBgmMusic()" id="bgmToggleBtnMobile" class="comic-btn flex-1 py-2 rounded-xl bg-shinYellow text-shinDark text-xs font-bold flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-music"></i> <span id="bgmBtnTextMobile">BGM: MATI</span>
+                </button>
+                <button onclick="toggleAudioNarration()" id="audioNarrationBtnMobile" class="comic-btn flex-1 py-2 rounded-xl bg-shinGreen text-shinDark text-xs font-bold flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-volume-high"></i> Suara Panduan
+                </button>
+            </div>
         </div>
     </header>
 
     <!-- MAIN CONTAINER -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 relative z-10">
 
         <!-- BILIK 1: PERANAN & TUGAS PERDANA MENTERI -->
-        <section id="room-lobi" class="room-section space-y-8">
-            <div class="comic-box-red p-6 sm:p-10 relative overflow-hidden">
+        <section id="room-lobi" class="room-section space-y-6 sm:space-y-8">
+            <div class="comic-box-red p-5 sm:p-10 relative overflow-hidden">
                 <div class="max-w-3xl relative z-10 space-y-3">
                     <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-shinYellow border-2 border-shinDark text-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
                         <span>💥 BILIK 1: DEWAN PERANAN KERAJAAN</span>
                     </span>
-                    <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark leading-tight">
+                    <h2 class="font-shantell text-xl sm:text-4xl font-black text-shinDark leading-tight">
                         Institusi & Peranan Perdana Menteri Malaysia
                     </h2>
-                    <p class="text-slate-800 text-sm leading-relaxed">
+                    <p class="text-slate-800 text-xs sm:text-sm leading-relaxed">
                         Perdana Menteri merupakan Ketua Kerajaan yang memimpin pentadbiran persekutuan Malaysia! Mari kita terokai definisi perlembagaan dan 8 tugas utama di bawah!
                     </p>
                 </div>
             </div>
 
-            <div class="comic-box-yellow p-6 sm:p-8 space-y-4">
-                <div class="flex items-center gap-4">
-                    <div class="w-14 h-14 rounded-2xl bg-shinRed text-white flex items-center justify-center text-3xl font-black border-3 border-shinDark shadow-[3px_3px_0_#111]">
+            <div class="comic-box-yellow p-5 sm:p-8 space-y-4">
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-shinRed text-white flex items-center justify-center text-2xl sm:text-3xl font-black border-3 border-shinDark shadow-[3px_3px_0_#111] flex-shrink-0">
                         📜
                     </div>
                     <div>
-                        <h3 class="font-shantell text-xl font-bold text-shinDark">Perkara 43 Perlembagaan Persekutuan</h3>
-                        <p class="text-xs text-slate-700">Pelantikan & Status Rasmi Ketua Kerajaan Malaysia</p>
+                        <h3 class="font-shantell text-lg sm:text-xl font-bold text-shinDark">Perkara 43 Perlembagaan Persekutuan</h3>
+                        <p class="text-[11px] sm:text-xs text-slate-700">Pelantikan & Status Rasmi Ketua Kerajaan Malaysia</p>
                     </div>
                 </div>
-                <div class="bg-white p-5 rounded-2xl border-3 border-shinDark text-sm text-slate-900 leading-relaxed space-y-2 shadow-[3px_3px_0_#111]">
+                <div class="bg-white p-4 sm:p-5 rounded-2xl border-3 border-shinDark text-xs sm:text-sm text-slate-900 leading-relaxed space-y-2 shadow-[3px_3px_0_#111]">
                     <p>
                         • <strong>Perdana Menteri</strong> ialah Ketua Kerajaan yang dilantik secara rasmi oleh <strong>Yang di-Pertuan Agong</strong> (Ketua Utama Negara) mengikut peruntukan Perkara 43(2)(a) Perlembagaan Persekutuan.
                     </p>
@@ -333,54 +354,54 @@
             <div class="space-y-4">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
                     <div>
-                        <h3 class="font-shantell text-2xl font-black text-shinDark">Tugas-Tugas Rasmi Perdana Menteri</h3>
-                        <p class="text-xs text-slate-700">Klik butang [⭐ Kuasai] untuk meletupkan bintang!</p>
+                        <h3 class="font-shantell text-xl sm:text-2xl font-black text-shinDark">Tugas-Tugas Rasmi Perdana Menteri</h3>
+                        <p class="text-xs text-slate-700">Tekan/Klik butang [⭐ Kuasai] untuk meletupkan bintang!</p>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="lobiDutiesGrid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="lobiDutiesGrid">
                     <!-- JS Injected Duty Cards -->
                 </div>
             </div>
         </section>
 
         <!-- BILIK 2: KENALI PEMIMPIN NEGARA (BIODATA PENUH) -->
-        <section id="room-biodata" class="room-section hidden space-y-8">
-            <div class="comic-box-blue p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <section id="room-biodata" class="room-section hidden space-y-6 sm:space-y-8">
+            <div class="comic-box-blue p-5 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                 <div>
                     <span class="text-xs font-bold text-shinDark uppercase tracking-widest block mb-1">BILIK 2: GALLERY PEMIMPIN</span>
-                    <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Kenali Pemimpin Negara (Biodata Penuh)</h2>
+                    <h2 class="font-shantell text-xl sm:text-3xl font-black text-shinDark">Kenali Pemimpin Negara (Biodata Penuh)</h2>
                     <p class="text-slate-800 text-xs sm:text-sm mt-1">
                         Maklumat biodata ringkas & lengkap, pendidikan awal, pengajian tinggi, kerjaya, dan pasangan 10 Perdana Menteri.
                     </p>
                 </div>
 
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="filterBiodataEra('all')" id="btn-bio-all" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-shinRed text-white">Semua Era</button>
-                    <button onclick="filterBiodataEra('kemerdekaan')" id="btn-bio-kemerdekaan" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1957–1981</button>
-                    <button onclick="filterBiodataEra('pemodenan')" id="btn-bio-pemodenan" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1981–2018</button>
-                    <button onclick="filterBiodataEra('kontemporari')" id="btn-bio-kontemporari" class="bio-era-btn comic-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">2018–Kini</button>
+                <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+                    <button onclick="filterBiodataEra('all')" id="btn-bio-all" class="bio-era-btn comic-btn flex-1 md:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-shinRed text-white">Semua Era</button>
+                    <button onclick="filterBiodataEra('kemerdekaan')" id="btn-bio-kemerdekaan" class="bio-era-btn comic-btn flex-1 md:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1957–1981</button>
+                    <button onclick="filterBiodataEra('pemodenan')" id="btn-bio-pemodenan" class="bio-era-btn comic-btn flex-1 md:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">1981–2018</button>
+                    <button onclick="filterBiodataEra('kontemporari')" id="btn-bio-kontemporari" class="bio-era-btn comic-btn flex-1 md:flex-none px-3 sm:px-4 py-2 rounded-xl text-xs font-bold bg-white text-shinDark">2018–Kini</button>
                 </div>
             </div>
 
             <div class="relative max-w-xl mx-auto">
                 <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
                 <input type="text" id="biodataSearchInput" onkeyup="handleBiodataSearch()" placeholder="Cari nama Perdana Menteri, sekolah, atau gelaran..." 
-                       class="w-full pl-11 pr-4 py-3.5 rounded-2xl bg-white border-3 border-shinDark text-slate-900 placeholder-slate-500 font-bold focus:outline-none shadow-[4px_4px_0_#111] text-sm">
+                       class="w-full pl-11 pr-4 py-3 sm:py-3.5 rounded-2xl bg-white border-3 border-shinDark text-slate-900 placeholder-slate-500 font-bold focus:outline-none shadow-[4px_4px_0_#111] text-xs sm:text-sm">
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="biodataCardsGrid">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="biodataCardsGrid">
                 <!-- JS Injected Cards -->
             </div>
         </section>
 
         <!-- BILIK 3: SUMBANGAN & IMPAK PEMIMPIN NEGARA -->
-        <section id="room-sumbangan" class="room-section hidden space-y-8">
+        <section id="room-sumbangan" class="room-section hidden space-y-6 sm:space-y-8">
             <div class="text-center max-w-3xl mx-auto space-y-2">
                 <span class="inline-block px-3 py-1 rounded-full bg-shinYellow border-2 border-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
                     🚀 BILIK 3: SEJARAH & DASAR NEGARA
                 </span>
-                <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark">Sumbangan & Impak Pemimpin Negara</h2>
+                <h2 class="font-shantell text-xl sm:text-4xl font-black text-shinDark">Sumbangan & Impak Pemimpin Negara</h2>
                 <p class="text-xs sm:text-sm text-slate-800 font-medium">
                     Pendedahan menyeluruh dasar sosioekonomi, wawasan pembangunan, dan impak 10 Perdana Menteri.
                 </p>
@@ -392,74 +413,74 @@
         </section>
 
         <!-- BILIK 4: MATRIKS SUMBANGAN & NILAI MURNI -->
-        <section id="room-matriks" class="room-section hidden space-y-8">
+        <section id="room-matriks" class="room-section hidden space-y-6 sm:space-y-8">
             <div class="text-center max-w-3xl mx-auto space-y-2">
                 <span class="inline-block px-3 py-1 rounded-full bg-shinPink text-white border-2 border-shinDark text-xs font-bold shadow-[2px_2px_0_#111]">
                     📊 BILIK 4: ANALISIS BIDANG
                 </span>
-                <h2 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark">Matriks Sumbangan & Nilai Kepimpinan</h2>
+                <h2 class="font-shantell text-xl sm:text-4xl font-black text-shinDark">Matriks Sumbangan & Nilai Kepimpinan</h2>
             </div>
 
-            <div class="flex flex-wrap items-center justify-center gap-2" id="matriksFilterButtons"></div>
+            <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2" id="matriksFilterButtons"></div>
 
-            <div id="matriksDisplayArea" class="comic-box p-6 sm:p-8 space-y-6"></div>
+            <div id="matriksDisplayArea" class="comic-box p-5 sm:p-8 space-y-6"></div>
 
-            <div class="pt-6">
-                <h3 class="font-shantell text-2xl font-black text-shinDark text-center mb-6">6 Nilai Kepimpinan Yang Boleh Dicontohi</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="nilaiCardsGrid"></div>
+            <div class="pt-4 sm:pt-6">
+                <h3 class="font-shantell text-xl sm:text-2xl font-black text-shinDark text-center mb-6">6 Nilai Kepimpinan Yang Boleh Dicontohi</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6" id="nilaiCardsGrid"></div>
             </div>
         </section>
 
         <!-- BILIK 5: PERMAINAN PADANAN DUA SEKSYEN -->
-        <section id="room-game" class="room-section hidden space-y-8">
-            <div class="comic-box-blue p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <section id="room-game" class="room-section hidden space-y-6 sm:space-y-8">
+            <div class="comic-box-blue p-5 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div>
                     <span class="px-3 py-1 rounded-full bg-shinRed text-white font-black text-xs inline-block mb-2 border-2 border-shinDark shadow-[2px_2px_0_#111]">
                         🎮 BILIK 5: PERMAINAN PADANAN
                     </span>
-                    <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Padanan Dua Seksyen: Pemimpin vs Sumbangan</h2>
+                    <h2 class="font-shantell text-xl sm:text-3xl font-black text-shinDark">Padanan Dua Seksyen: Pemimpin vs Sumbangan</h2>
                     <p class="text-slate-800 text-xs sm:text-sm mt-1">
-                        Peraturan: Pilih <strong>1 Kad dari Seksyen A (Top)</strong> dan <strong>1 Kad dari Seksyen B (Bottom)</strong> di bawah!
+                        Peraturan: Sentuh/Pilih <strong>1 Kad dari Seksyen A (Atas)</strong> dan <strong>1 Kad dari Seksyen B (Bawah)</strong> di bawah!
                     </p>
                 </div>
 
-                <div class="flex items-center gap-4 bg-shinYellow p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] min-w-[240px] justify-around">
+                <div class="flex items-center gap-4 bg-shinYellow p-3 sm:p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] w-full md:w-auto justify-around">
                     <div class="text-center">
                         <span class="text-[10px] text-shinDark uppercase font-black block">Tepat</span>
-                        <span id="gameMatchedScore" class="font-shantell text-2xl font-black text-shinRed">0 / 10</span>
+                        <span id="gameMatchedScore" class="font-shantell text-xl sm:text-2xl font-black text-shinRed">0 / 10</span>
                     </div>
                     <div class="h-8 w-1 bg-shinDark"></div>
                     <div class="text-center">
                         <span class="text-[10px] text-shinDark uppercase font-black block">Cubaan (Moves)</span>
-                        <span id="gameMovesCount" class="font-shantell text-2xl font-black text-shinBlue">0</span>
+                        <span id="gameMovesCount" class="font-shantell text-xl sm:text-2xl font-black text-shinBlue">0</span>
                     </div>
                 </div>
             </div>
 
             <div id="gameAlertBanner" class="hidden p-4 rounded-2xl text-center font-black text-sm shadow-[4px_4px_0_#111] border-3 border-shinDark transition-all"></div>
 
-            <div class="comic-box p-6 space-y-4">
+            <div class="comic-box p-4 sm:p-6 space-y-4">
                 <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
-                    <h3 class="font-shantell text-lg font-bold text-shinRed flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">A</span>
-                        SEKSYEN A: Kad Pemimpin Negara (Pilih 1 Kad)
+                    <h3 class="font-shantell text-base sm:text-lg font-bold text-shinRed flex items-center gap-2">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">A</span>
+                        SEKSYEN A: Kad Pemimpin (Pilih 1 Kad)
                     </h3>
-                    <span class="text-xs text-slate-700 font-bold" id="secAStatus">Belum Dipilih</span>
+                    <span class="text-[11px] sm:text-xs text-slate-700 font-bold" id="secAStatus">Belum Dipilih</span>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3" id="gridSectionA">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3" id="gridSectionA">
                     <!-- JS Injected 10 Cards -->
                 </div>
             </div>
 
-            <div class="comic-box p-6 space-y-4">
+            <div class="comic-box p-4 sm:p-6 space-y-4">
                 <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
-                    <h3 class="font-shantell text-lg font-bold text-shinBlue flex items-center gap-2">
-                        <span class="w-8 h-8 rounded-lg bg-shinBlue text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">B</span>
-                        SEKSYEN B: Kad Sumbangan & Gelaran (Pilih 1 Kad)
+                    <h3 class="font-shantell text-base sm:text-lg font-bold text-shinBlue flex items-center gap-2">
+                        <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-shinBlue text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">B</span>
+                        SEKSYEN B: Kad Sumbangan (Pilih 1 Kad)
                     </h3>
-                    <span class="text-xs text-slate-700 font-bold" id="secBStatus">Belum Dipilih</span>
+                    <span class="text-[11px] sm:text-xs text-slate-700 font-bold" id="secBStatus">Belum Dipilih</span>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" id="gridSectionB">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 sm:gap-4" id="gridSectionB">
                     <!-- JS Injected 10 Cards -->
                 </div>
             </div>
@@ -472,47 +493,47 @@
         </section>
 
         <!-- BILIK 6: SEMAKAN KENDIRI -->
-        <section id="room-semakan" class="room-section hidden space-y-8">
-            <div class="comic-box-green p-6 sm:p-8 space-y-6">
+        <section id="room-semakan" class="room-section hidden space-y-6 sm:space-y-8">
+            <div class="comic-box-green p-5 sm:p-8 space-y-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b-3 border-shinDark pb-4">
                     <div>
                         <span class="px-3 py-1 rounded-full bg-shinYellow text-shinDark font-black text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
                             ⭐ BILIK 6: MODUL SEMAKAN KENDIRI
                         </span>
-                        <h2 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark mt-2">
+                        <h2 class="font-shantell text-xl sm:text-3xl font-black text-shinDark mt-2">
                             Checklist Penguasaan Pembelajaran (34 Topik)
                         </h2>
                         <p class="text-xs sm:text-sm text-slate-800 mt-1">
-                            Klik butang <strong class="text-shinRed font-black">"Kuasai"</strong> pada mana-mana topik untuk meletupkan bintang!
+                            Sentuh / Klik butang <strong class="text-shinRed font-black">"Kuasai"</strong> pada mana-mana topik untuk meletupkan bintang!
                         </p>
                     </div>
 
-                    <div class="bg-white p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] text-center min-w-[200px]">
+                    <div class="bg-white p-4 rounded-2xl border-3 border-shinDark shadow-[4px_4px_0_#111] text-center w-full sm:w-auto min-w-[200px]">
                         <span class="text-[10px] uppercase font-black text-slate-700 block">KEMAJUAN KESELURUHAN</span>
-                        <span id="semakanTotalProgressText" class="font-shantell text-3xl font-black text-shinRed">0 / 34</span>
+                        <span id="semakanTotalProgressText" class="font-shantell text-2xl sm:text-3xl font-black text-shinRed">0 / 34</span>
                         <div class="w-full bg-slate-200 h-3 rounded-full border-2 border-shinDark overflow-hidden mt-2">
                             <div id="semakanTotalProgressBar" class="bg-shinGreen h-full w-0 transition-all duration-500"></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="semakanChecklistGrid">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6" id="semakanChecklistGrid">
                     <!-- JS Injected Lists -->
                 </div>
             </div>
         </section>
 
         <!-- BILIK 7: UJI MINDA & SIJIL PELAWAT -->
-        <section id="room-kuiz" class="room-section hidden space-y-10">
-            <div class="comic-box-yellow p-6 sm:p-10" id="quizContainerBox">
+        <section id="room-kuiz" class="room-section hidden space-y-6 sm:space-y-10">
+            <div class="comic-box-yellow p-5 sm:p-10" id="quizContainerBox">
                 <div class="flex items-center justify-between pb-4 mb-6 border-b-3 border-shinDark">
                     <div>
                         <span class="text-xs font-bold text-shinRed uppercase">BILIK 7: EVALUASI KUIZ</span>
-                        <h3 class="font-shantell text-2xl font-black text-shinDark">Soalan Uji Minda Sejarah</h3>
+                        <h3 class="font-shantell text-xl sm:text-2xl font-black text-shinDark">Soalan Uji Minda Sejarah</h3>
                     </div>
                     <div class="text-right">
                         <span class="text-xs font-bold text-slate-700 block">Skor</span>
-                        <span id="quizScoreDisplay" class="font-shantell text-2xl font-black text-shinRed">0 / 5</span>
+                        <span id="quizScoreDisplay" class="font-shantell text-xl sm:text-2xl font-black text-shinRed">0 / 5</span>
                     </div>
                 </div>
 
@@ -530,27 +551,27 @@
                 </div>
             </div>
 
-            <div class="comic-box-red p-6 sm:p-8 space-y-3">
-                <h4 class="font-shantell text-lg font-black text-shinDark flex items-center gap-2">
+            <div class="comic-box-red p-5 sm:p-8 space-y-3">
+                <h4 class="font-shantell text-base sm:text-lg font-black text-shinDark flex items-center gap-2">
                     💡 Sudut Pemikiran Kritis (KBAT)
                 </h4>
                 <p class="text-xs sm:text-sm text-slate-800 leading-relaxed font-bold">
                     Mengapakah semangat perpaduan dan integriti amat penting untuk dicontohi oleh generasi muda daripada kepimpinan Perdana Menteri Malaysia?
                 </p>
                 <textarea id="kbatAnswerText" rows="3" placeholder="Tuliskan pandangan KBAT anda di sini..." 
-                          class="w-full p-4 rounded-2xl border-3 border-shinDark bg-white text-xs sm:text-sm text-slate-900 font-bold focus:outline-none shadow-[3px_3px_0_#111]"></textarea>
+                          class="w-full p-3 sm:p-4 rounded-2xl border-3 border-shinDark bg-white text-xs sm:text-sm text-slate-900 font-bold focus:outline-none shadow-[3px_3px_0_#111]"></textarea>
                 <button onclick="submitKbat()" class="comic-btn px-5 py-2.5 rounded-xl bg-shinYellow text-shinDark text-xs font-black">
                     Hantar Jawapan KBAT
                 </button>
                 <p id="kbatFeedback" class="hidden text-xs font-black text-emerald-800 mt-2"></p>
             </div>
 
-            <div class="comic-box p-8 space-y-6">
+            <div class="comic-box p-5 sm:p-8 space-y-6">
                 <div class="text-center max-w-xl mx-auto space-y-2">
-                    <div class="w-16 h-16 rounded-2xl bg-shinYellow text-shinDark text-3xl font-black flex items-center justify-center mx-auto border-3 border-shinDark shadow-[3px_3px_0_#111] rotate-[-4deg]">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-shinYellow text-shinDark text-2xl sm:text-3xl font-black flex items-center justify-center mx-auto border-3 border-shinDark shadow-[3px_3px_0_#111] rotate-[-4deg]">
                         🎓
                     </div>
-                    <h3 class="font-shantell text-2xl sm:text-3xl font-black text-shinDark">Sijil Pelawat Perpustakaan</h3>
+                    <h3 class="font-shantell text-xl sm:text-3xl font-black text-shinDark">Sijil Pelawat Perpustakaan</h3>
                     <p class="text-slate-700 text-xs sm:text-sm font-bold">
                         Jana Sijil Penghargaan Pelawat Perpustakaan rasmi untuk tujuan rekod ulangkaji sekolah!
                     </p>
@@ -558,25 +579,25 @@
 
                 <div class="max-w-md mx-auto flex flex-col sm:flex-row gap-2">
                     <input type="text" id="visitorNameInput" placeholder="Taip Nama Penuh Anda di sini..." 
-                           class="flex-1 px-4 py-3 rounded-xl bg-white border-3 border-shinDark text-slate-900 font-bold text-sm focus:outline-none shadow-[3px_3px_0_#111]">
+                           class="flex-1 px-4 py-3 rounded-xl bg-white border-3 border-shinDark text-slate-900 font-bold text-xs sm:text-sm focus:outline-none shadow-[3px_3px_0_#111]">
                     <button onclick="generateCertificate()" class="comic-btn px-6 py-3 rounded-xl bg-shinRed text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2">
                         <i class="fa-solid fa-certificate"></i> Jana Sijil
                     </button>
                 </div>
 
-                <div id="sijilPrintArea" class="hidden comic-box-yellow p-8 sm:p-12 text-center space-y-6 my-6 relative overflow-hidden">
+                <div id="sijilPrintArea" class="hidden comic-box-yellow p-6 sm:p-12 text-center space-y-6 my-6 relative overflow-hidden">
                     <div class="flex items-center justify-between border-b-3 border-shinDark pb-4">
-                        <span class="text-xs font-black text-shinRed tracking-widest font-shantell">REKOD PELAWAT PERPUSTAKAAN</span>
-                        <span class="text-xs font-bold text-slate-700" id="sijilDate">Tarikh: 08 Nov 2026</span>
+                        <span class="text-[10px] sm:text-xs font-black text-shinRed tracking-widest font-shantell">REKOD PELAWAT PERPUSTAKAAN</span>
+                        <span class="text-[10px] sm:text-xs font-bold text-slate-700" id="sijilDate">Tarikh: 08 Nov 2026</span>
                     </div>
 
                     <div class="space-y-3">
-                        <h4 class="font-shantell text-2xl sm:text-4xl font-black text-shinDark tracking-wider">
+                        <h4 class="font-shantell text-xl sm:text-4xl font-black text-shinDark tracking-wider">
                             SIJIL PENGHARGAAN PELAWAT
                         </h4>
-                        <p class="text-xs text-slate-700 uppercase font-black">Dengan ini disahkan bahawa</p>
+                        <p class="text-[10px] sm:text-xs text-slate-700 uppercase font-black">Dengan ini disahkan bahawa</p>
                         
-                        <div class="text-2xl sm:text-4xl font-black text-shinRed border-b-4 border-shinDark inline-block px-8 py-2 font-shantell" id="sijilVisitorName">
+                        <div class="text-xl sm:text-4xl font-black text-shinRed border-b-4 border-shinDark inline-block px-4 sm:px-8 py-2 font-shantell max-w-full break-words" id="sijilVisitorName">
                             NAMA PELAWAT
                         </div>
 
@@ -587,21 +608,21 @@
 
                     <div class="pt-6 flex items-center justify-around border-t-3 border-shinDark">
                         <div class="text-center">
-                            <span class="text-[10px] text-slate-700 uppercase font-black block">Pencapaian Kuiz</span>
-                            <span class="text-lg font-black text-shinRed" id="sijilScoreBadge">5 / 5 Tepat</span>
+                            <span class="text-[9px] sm:text-[10px] text-slate-700 uppercase font-black block">Pencapaian Kuiz</span>
+                            <span class="text-sm sm:text-lg font-black text-shinRed" id="sijilScoreBadge">5 / 5 Tepat</span>
                         </div>
-                        <div class="w-16 h-16 rounded-2xl border-3 border-shinDark bg-shinYellow flex items-center justify-center text-3xl shadow-[3px_3px_0_#111]">
+                        <div class="w-12 h-12 sm:w-16 sm:h-16 rounded-2xl border-3 border-shinDark bg-shinYellow flex items-center justify-center text-2xl sm:text-3xl shadow-[3px_3px_0_#111]">
                             📚
                         </div>
                         <div class="text-center">
-                            <span class="text-[10px] text-slate-700 uppercase font-black block">Status Modul</span>
+                            <span class="text-[9px] sm:text-[10px] text-slate-700 uppercase font-black block">Status Modul</span>
                             <span class="text-xs font-black text-shinGreen">LULUS CEMERLANG</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center pt-2">
-                    <button onclick="window.print()" id="printBtn" class="hidden comic-btn px-8 py-3.5 rounded-2xl bg-shinGreen text-shinDark font-black text-sm inline-flex items-center gap-2 mx-auto">
+                    <button onclick="window.print()" id="printBtn" class="hidden comic-btn px-8 py-3.5 rounded-2xl bg-shinGreen text-shinDark font-black text-xs sm:text-sm inline-flex items-center gap-2 mx-auto">
                         <i class="fa-solid fa-print"></i> Cetak / Simpan Sijil ini (PDF)
                     </button>
                 </div>
@@ -610,28 +631,28 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-shinRed text-white py-8 px-4 border-t-4 border-shinDark mt-auto relative z-10 shadow-[0_-4px_0_#111]">
+    <footer class="bg-shinRed text-white py-6 sm:py-8 px-4 border-t-4 border-shinDark mt-auto relative z-10 shadow-[0_-4px_0_#111]">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left text-xs font-bold">
             <div class="flex items-center gap-3">
-                <span class="text-3xl">📚</span>
+                <span class="text-2xl sm:text-3xl">📚</span>
                 <div>
-                    <span class="font-shantell font-black text-shinYellow block text-sm">PERPUSTAKAAN: PEMIMPIN NEGARA DAN SUMBANGANNYA</span>
-                    <span>Modul Pembelajaran Sejarah Interaktif • KSSR & KSSM</span>
+                    <span class="font-shantell font-black text-shinYellow block text-xs sm:text-sm">PERPUSTAKAAN: PEMIMPIN NEGARA DAN SUMBANGANNYA</span>
+                    <span class="text-[11px] opacity-90">Modul Pembelajaran Sejarah Interaktif • KSSR & KSSM</span>
                 </div>
             </div>
-            <div class="text-shinYellow font-black">
+            <div class="text-shinYellow font-black text-[11px] sm:text-xs">
                 Disusun semula dengan gaya ceria & interaktif untuk kefahaman murid Sejarah!
             </div>
         </div>
     </footer>
 
     <!-- MODAL 1: DETAIL BIODATA PM -->
-    <div id="pmDetailModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="comic-box-yellow max-w-3xl w-full max-h-[90vh] overflow-y-auto relative my-8 p-6 sm:p-8 space-y-6 static-read-box">
+    <div id="pmDetailModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="comic-box-yellow max-w-3xl w-full max-h-[90vh] overflow-y-auto relative my-4 sm:my-8 p-5 sm:p-8 space-y-6 static-read-box">
             <div class="flex items-center justify-between border-b-3 border-shinDark pb-4">
                 <div class="flex items-center gap-3">
-                    <span id="modalPmNum" class="w-9 h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">01</span>
-                    <h3 id="modalPmTitle" class="font-shantell text-lg sm:text-xl font-black text-shinDark truncate max-w-md">Nama Perdana Menteri</h3>
+                    <span id="modalPmNum" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">01</span>
+                    <h3 id="modalPmTitle" class="font-shantell text-base sm:text-xl font-black text-shinDark truncate max-w-[200px] sm:max-w-md">Nama Perdana Menteri</h3>
                 </div>
                 <button onclick="closePmModal()" class="comic-btn w-9 h-9 rounded-xl bg-shinRed text-white flex items-center justify-center">
                     <i class="fa-solid fa-xmark text-lg"></i>
@@ -643,9 +664,9 @@
 
     <!-- MODAL 2: LOCAL IMAGE GUIDE -->
     <div id="imageGuideModal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="comic-box max-w-lg w-full p-6 sm:p-8 space-y-4 static-read-box">
+        <div class="comic-box max-w-lg w-full p-5 sm:p-8 space-y-4 static-read-box">
             <div class="flex items-center justify-between border-b-3 border-shinDark pb-3">
-                <h4 class="font-shantell font-black text-shinRed text-base flex items-center gap-2">
+                <h4 class="font-shantell font-black text-shinRed text-sm sm:text-base flex items-center gap-2">
                     📁 Panduan Gambar Local Computer
                 </h4>
                 <button onclick="closeImageGuideModal()" class="comic-btn w-8 h-8 rounded-lg bg-shinRed text-white flex items-center justify-center">
@@ -677,8 +698,10 @@
             masteryState[itemId] = !masteryState[itemId];
 
             if (masteryState[itemId]) {
-                if (event) {
+                if (event && event.clientX) {
                     triggerStarBurst(event.clientX, event.clientY);
+                } else if (event && event.touches && event.touches[0]) {
+                    triggerStarBurst(event.touches[0].clientX, event.touches[0].clientY);
                 } else {
                     triggerStarBurst(window.innerWidth / 2, window.innerHeight / 2);
                 }
@@ -697,6 +720,9 @@
             const badgeText = `${masteredCount} / ${totalKeys} Kuasai`;
             const badgeEl = document.getElementById('globalMasteryBadgeText');
             if (badgeEl) badgeEl.innerText = badgeText;
+            
+            const badgeMobile = document.getElementById('mobileMasteryBadgeText');
+            if (badgeMobile) badgeMobile.innerText = badgeText;
 
             const progressText = document.getElementById('semakanTotalProgressText');
             if (progressText) progressText.innerText = badgeText;
@@ -1118,14 +1144,17 @@
             initQuiz();
             updateMasteryUI();
 
-            window.addEventListener('click', (e) => {
-                playClickSound();
-            });
+            const clickHandler = (e) => {
+                if (e.target.closest('button, .comic-btn, input, textarea, [onclick]')) {
+                    playClickSound();
+                }
+            };
+            window.addEventListener('click', clickHandler);
+            window.addEventListener('touchstart', clickHandler, { passive: true });
 
             document.querySelectorAll('input, textarea').forEach(el => {
-                el.addEventListener('keydown', (e) => {
-                    playTypingSound();
-                });
+                el.addEventListener('keydown', () => playTypingSound());
+                el.addEventListener('input', () => playTypingSound());
             });
         });
 
@@ -1262,7 +1291,7 @@
                 const isMastered = !!masteryState[t.key];
                 const boxStyle = bgStyles[idx % bgStyles.length];
                 return `
-                    <div class="${boxStyle} p-5 flex flex-col justify-between group">
+                    <div class="${boxStyle} p-4 sm:p-5 flex flex-col justify-between group">
                         <div>
                             <div class="flex items-center justify-between mb-3">
                                 <div class="w-10 h-10 rounded-xl bg-shinYellow text-shinDark border-2 border-shinDark flex items-center justify-center text-lg font-black shadow-[2px_2px_0_#111]">
@@ -1274,7 +1303,7 @@
                             <p class="text-xs text-slate-800 font-bold leading-relaxed">${t.desc}</p>
                         </div>
                         <div class="pt-4 border-t-2 border-shinDark mt-4 flex items-center justify-between">
-                            <button onclick="toggleMastery('${t.key}', event)" class="comic-btn px-3 py-1.5 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                            <button onclick="toggleMastery('${t.key}', event)" class="comic-btn w-full py-2 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
                                 <span>${isMastered ? '⭐ Dikuasai' : '⭐ Kuasai'}</span>
                             </button>
                         </div>
@@ -1289,13 +1318,13 @@
                 const pmKey = `pm_${pm.id}`;
                 const isMastered = !!masteryState[pmKey];
                 return `
-                    <div class="comic-box p-5 flex flex-col justify-between static-read-box">
+                    <div class="comic-box p-4 sm:p-5 flex flex-col justify-between static-read-box">
                         <div>
-                            <div class="h-56 bg-shinYellow rounded-2xl border-3 border-shinDark relative overflow-hidden flex items-center justify-center shadow-[3px_3px_0_#111]">
-                                <span class="absolute top-3 left-3 z-10 w-9 h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                            <div class="h-48 sm:h-56 bg-shinYellow rounded-2xl border-3 border-shinDark relative overflow-hidden flex items-center justify-center shadow-[3px_3px_0_#111]">
+                                <span class="absolute top-3 left-3 z-10 w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-shinRed text-white font-black flex items-center justify-center text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
                                     ${pm.num}
                                 </span>
-                                <span class="absolute top-3 right-3 z-10 px-3 py-1 rounded-full bg-white text-shinDark text-[11px] font-black border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                                <span class="absolute top-3 right-3 z-10 px-2.5 py-1 rounded-full bg-white text-shinDark text-[10px] sm:text-[11px] font-black border-2 border-shinDark shadow-[2px_2px_0_#111]">
                                     PM ${pm.id}
                                 </span>
                                 
@@ -1305,20 +1334,20 @@
                                 <div class="hidden w-full h-full">${pm.svgAvatar}</div>
                             </div>
 
-                            <div class="py-4 space-y-2">
-                                <span class="inline-block px-3 py-1 rounded-full bg-shinRed text-white font-black text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
+                            <div class="py-3 sm:py-4 space-y-2">
+                                <span class="inline-block px-3 py-1 rounded-full bg-shinRed text-white font-black text-[11px] sm:text-xs border-2 border-shinDark shadow-[2px_2px_0_#111]">
                                     ${pm.gelaran}
                                 </span>
-                                <h3 class="font-shantell text-base font-black text-shinDark">
+                                <h3 class="font-shantell text-sm sm:text-base font-black text-shinDark leading-tight">
                                     ${pm.name}
                                 </h3>
-                                <p class="text-xs text-slate-800 font-bold">
+                                <p class="text-[11px] sm:text-xs text-slate-800 font-bold">
                                     <i class="fa-solid fa-calendar-days text-shinRed"></i> ${pm.tempoh}
                                 </p>
                             </div>
                         </div>
 
-                        <div class="space-y-2">
+                        <div class="space-y-2 pt-2">
                             <button onclick="openPmModal(${pm.id})" class="comic-btn w-full py-2.5 rounded-xl bg-shinBlue text-white font-black text-xs flex items-center justify-center gap-2">
                                 <i class="fa-solid fa-address-card"></i> Lihat Biodata Penuh
                             </button>
@@ -1366,16 +1395,16 @@
 
             const body = document.getElementById('modalPmBody');
             body.innerHTML = `
-                <div class="comic-box-red p-5 flex flex-col sm:flex-row items-center gap-5 static-read-box">
-                    <div class="w-24 h-24 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
+                <div class="comic-box-red p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 sm:gap-5 static-read-box">
+                    <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
                         <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <div class="hidden w-full h-full">${pm.svgAvatar}</div>
                     </div>
-                    <div>
+                    <div class="text-center sm:text-left">
                         <span class="inline-block px-3 py-1 rounded-full bg-shinYellow text-shinDark font-black text-xs mb-1 border-2 border-shinDark shadow-[2px_2px_0_#111]">
                             ${pm.gelaran}
                         </span>
-                        <h4 class="font-shantell text-lg font-black text-shinDark">${pm.name}</h4>
+                        <h4 class="font-shantell text-base sm:text-lg font-black text-shinDark">${pm.name}</h4>
                         <p class="text-xs text-slate-800 font-bold">Tempoh Pentadbiran: ${pm.tempoh}</p>
                     </div>
                 </div>
@@ -1421,20 +1450,20 @@
                 const sumbKey = `sumb_${pm.id}`;
                 const isMastered = !!masteryState[sumbKey];
                 return `
-                    <div class="comic-box p-6 sm:p-8 space-y-4 static-read-box">
+                    <div class="comic-box p-5 sm:p-8 space-y-4 static-read-box">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b-3 border-shinDark pb-4">
-                            <div class="flex items-center gap-4">
-                                <div class="w-14 h-14 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
+                            <div class="flex items-center gap-3 sm:gap-4">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden bg-shinYellow border-3 border-shinDark flex-shrink-0 shadow-[3px_3px_0_#111]">
                                     <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <div class="hidden w-full h-full">${pm.svgAvatar}</div>
                                 </div>
                                 <div>
-                                    <span class="text-xs font-black text-shinRed uppercase">PM KE-${pm.id} • ${pm.gelaran}</span>
-                                    <h3 class="font-shantell text-lg sm:text-xl font-black text-shinDark">${pm.name}</h3>
+                                    <span class="text-[10px] sm:text-xs font-black text-shinRed uppercase">PM KE-${pm.id} • ${pm.gelaran}</span>
+                                    <h3 class="font-shantell text-base sm:text-xl font-black text-shinDark">${pm.name}</h3>
                                 </div>
                             </div>
                             <div class="flex items-center gap-3">
-                                <button onclick="toggleMastery('${sumbKey}', event)" class="comic-btn px-4 py-2 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
+                                <button onclick="toggleMastery('${sumbKey}', event)" class="comic-btn w-full sm:w-auto px-4 py-2 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
                                     ${isMastered ? '⭐ Dikuasai' : '⭐ Kuasai'}
                                 </button>
                             </div>
@@ -1444,7 +1473,7 @@
                             <h4 class="text-xs font-black text-slate-700 uppercase">Sumbangan Utama Pentadbiran:</h4>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                 ${pm.sumbangan.map(s => `
-                                    <div class="bg-shinCream p-4 rounded-2xl border-2 border-shinDark text-xs font-bold text-slate-900 flex items-start gap-3 shadow-[2px_2px_0_#111]">
+                                    <div class="bg-shinCream p-3.5 sm:p-4 rounded-2xl border-2 border-shinDark text-xs font-bold text-slate-900 flex items-start gap-2.5 sm:gap-3 shadow-[2px_2px_0_#111]">
                                         <i class="fa-solid fa-star text-shinYellow mt-0.5 text-sm"></i>
                                         <span class="leading-relaxed">${s}</span>
                                     </div>
@@ -1477,7 +1506,7 @@
             const container = document.getElementById('matriksFilterButtons');
             container.innerHTML = matriksCategories.map(c => `
                 <button onclick="renderMatriksContent('${c.id}')" id="m-btn-${c.id}" 
-                        class="m-filter-btn comic-btn px-4 py-2 rounded-xl text-xs font-black bg-white text-shinDark">
+                        class="m-filter-btn comic-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-[11px] sm:text-xs font-black bg-white text-shinDark">
                     ${c.label}
                 </button>
             `).join('');
@@ -1498,7 +1527,7 @@
             const display = document.getElementById('matriksDisplayArea');
             display.innerHTML = `
                 <div class="flex items-center justify-between pb-4 border-b-3 border-shinDark">
-                    <h4 class="font-shantell text-lg font-black text-shinDark">
+                    <h4 class="font-shantell text-base sm:text-lg font-black text-shinDark">
                         Analisis Bidang: <span class="text-shinRed">${catId === 'all' ? 'Semua Bidang Pentadbiran' : catId}</span>
                     </h4>
                     <span class="text-xs font-black text-slate-700">${matched.length} Tokoh</span>
@@ -1539,7 +1568,7 @@
                                 <div>
                                     <h4 class="font-shantell text-lg font-black text-shinDark mb-1">${v.title}</h4>
                                     <span class="text-[11px] font-black text-shinRed flex items-center justify-center gap-1">
-                                        Klik untuk putar 3D <i class="fa-solid fa-rotate"></i>
+                                        Sentuh / Klik untuk putar 3D <i class="fa-solid fa-rotate"></i>
                                     </span>
                                 </div>
                                 <button onclick="event.stopPropagation(); toggleMastery('${v.key}', event)" class="comic-btn px-3 py-1 rounded-xl text-xs font-black ${isMastered ? 'bg-shinGreen text-shinDark' : 'bg-shinYellow text-shinDark'}">
@@ -1573,9 +1602,9 @@
                 const masteredCat = itemKeys.filter(k => masteryState[k]).length;
 
                 return `
-                    <div class="bg-white p-5 rounded-2xl border-3 border-shinDark space-y-3 shadow-[4px_4px_0_#111]">
+                    <div class="bg-white p-4 sm:p-5 rounded-2xl border-3 border-shinDark space-y-3 shadow-[4px_4px_0_#111]">
                         <div class="flex items-center justify-between border-b-3 border-shinDark pb-2">
-                            <h4 class="font-black text-sm text-shinDark">${cat.title}</h4>
+                            <h4 class="font-black text-xs sm:text-sm text-shinDark">${cat.title}</h4>
                             <span class="text-xs font-black text-shinRed">${masteredCat} / ${itemKeys.length}</span>
                         </div>
                         <div class="space-y-2 max-h-60 overflow-y-auto pr-1">
@@ -1614,25 +1643,25 @@
             const gridA = document.getElementById('gridSectionA');
             gridA.innerHTML = listA.map(pm => `
                 <div onclick="selectSecACard(${pm.id})" id="card-secA-${pm.id}" 
-                     class="secA-card comic-btn p-3 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center">
-                    <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-shinDark mb-2 bg-shinYellow">
+                     class="secA-card comic-btn p-2.5 sm:p-3 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-shinDark mb-1.5 sm:mb-2 bg-shinYellow">
                         <img src="${pm.imagePath}" alt="${pm.shortName}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <div class="hidden w-full h-full">${pm.svgAvatar}</div>
                     </div>
-                    <span class="text-[10px] font-black text-shinRed uppercase">PM ${pm.id}</span>
-                    <h5 class="text-xs font-black leading-tight mt-0.5">${pm.shortName}</h5>
+                    <span class="text-[9px] sm:text-[10px] font-black text-shinRed uppercase">PM ${pm.id}</span>
+                    <h5 class="text-[11px] sm:text-xs font-black leading-tight mt-0.5">${pm.shortName}</h5>
                 </div>
             `).join('');
 
             const gridB = document.getElementById('gridSectionB');
             gridB.innerHTML = listB.map(pm => `
                 <div onclick="selectSecBCard(${pm.id})" id="card-secB-${pm.id}" 
-                     class="secB-card comic-btn p-4 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center min-h-[210px] justify-between">
-                    <div class="w-9 h-9 rounded-full bg-shinBlue text-white font-bold flex items-center justify-center text-sm mb-1 border border-shinDark flex-shrink-0">
+                     class="secB-card comic-btn p-3 sm:p-4 rounded-2xl bg-white border-3 border-shinDark text-shinDark cursor-pointer transition-all flex flex-col items-center text-center min-h-[160px] sm:min-h-[210px] justify-between">
+                    <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-shinBlue text-white font-bold flex items-center justify-center text-xs sm:text-sm mb-1 border border-shinDark flex-shrink-0">
                         📜
                     </div>
-                    <span class="text-[11px] font-black text-shinBlue uppercase tracking-wide px-2 py-0.5 bg-shinCream rounded-full border border-shinDark">${pm.gelaran}</span>
-                    <p class="text-xs font-bold text-slate-900 leading-relaxed mt-2 whitespace-normal break-words">${pm.sumbangan[0]}</p>
+                    <span class="text-[10px] sm:text-[11px] font-black text-shinBlue uppercase tracking-wide px-2 py-0.5 bg-shinCream rounded-full border border-shinDark">${pm.gelaran}</span>
+                    <p class="text-[11px] sm:text-xs font-bold text-slate-900 leading-relaxed mt-1 sm:mt-2 whitespace-normal break-words">${pm.sumbangan[0]}</p>
                 </div>
             `).join('');
         }
@@ -1697,8 +1726,8 @@
                 const cardA = document.getElementById(`card-secA-${selectedSecA}`);
                 const cardB = document.getElementById(`card-secB-${selectedSecB}`);
 
-                cardA.className = "p-3 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111]";
-                cardB.className = "p-4 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111] min-h-[210px] justify-between";
+                cardA.className = "p-2.5 sm:p-3 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111]";
+                cardB.className = "p-3 sm:p-4 rounded-2xl bg-shinGreen border-3 border-shinDark text-shinDark font-black cursor-default flex flex-col items-center text-center shadow-[3px_3px_0_#111] min-h-[160px] sm:min-h-[210px] justify-between";
 
                 banner.className = "p-4 rounded-2xl text-center font-black text-sm bg-shinGreen text-shinDark border-3 border-shinDark block animate-bounce shadow-[4px_4px_0_#111]";
                 banner.innerText = "Tahniah! Padanan Tepat! 🎉";
@@ -1773,7 +1802,7 @@
                     <div class="grid grid-cols-1 gap-3 pt-2">
                         ${q.opts.map((opt, idx) => `
                             <button onclick="selectQuizOption(${idx})" id="quiz-opt-${idx}" 
-                                    class="comic-btn w-full text-left p-4 rounded-2xl bg-white text-shinDark text-xs sm:text-sm font-bold flex items-center justify-between">
+                                    class="comic-btn w-full text-left p-3.5 sm:p-4 rounded-2xl bg-white text-shinDark text-xs sm:text-sm font-bold flex items-center justify-between">
                                 <span><strong class="text-shinRed mr-2">${String.fromCharCode(65 + idx)}.</strong> ${opt}</span>
                                 <i class="fa-regular fa-circle text-slate-400"></i>
                             </button>
@@ -1794,9 +1823,9 @@
             document.querySelectorAll('#quizQuestionBody button').forEach((btn, i) => {
                 btn.disabled = true;
                 if (i === q.ans) {
-                    btn.className = "comic-btn w-full text-left p-4 rounded-2xl bg-shinGreen text-shinDark text-xs sm:text-sm font-black flex items-center justify-between";
+                    btn.className = "comic-btn w-full text-left p-3.5 sm:p-4 rounded-2xl bg-shinGreen text-shinDark text-xs sm:text-sm font-black flex items-center justify-between";
                 } else if (i === idx && !isCorrect) {
-                    btn.className = "comic-btn w-full text-left p-4 rounded-2xl bg-shinRed text-white text-xs sm:text-sm font-black flex items-center justify-between";
+                    btn.className = "comic-btn w-full text-left p-3.5 sm:p-4 rounded-2xl bg-shinRed text-white text-xs sm:text-sm font-black flex items-center justify-between";
                 }
             });
 
@@ -1920,13 +1949,17 @@
 
         function toggleBgmMusic() {
             const btnText = document.getElementById('bgmBtnText');
+            const btnTextMobile = document.getElementById('bgmBtnTextMobile');
+            
             if (isBgmPlaying) {
                 isBgmPlaying = false;
                 if (bgmIntervalId) clearInterval(bgmIntervalId);
-                btnText.innerText = "BGM: MATI";
+                if (btnText) btnText.innerText = "BGM: MATI";
+                if (btnTextMobile) btnTextMobile.innerText = "BGM: MATI";
             } else {
                 isBgmPlaying = true;
-                btnText.innerText = "BGM: HIDUP";
+                if (btnText) btnText.innerText = "BGM: HIDUP";
+                if (btnTextMobile) btnTextMobile.innerText = "BGM: HIDUP";
                 playBgmLoop();
                 bgmIntervalId = setInterval(playBgmLoop, 3200);
             }
@@ -2040,10 +2073,10 @@
             const btnText = document.getElementById('audioBtnText');
             if (window.speechSynthesis && window.speechSynthesis.speaking) {
                 window.speechSynthesis.cancel();
-                btnText.innerText = "Suara Panduan";
+                if (btnText) btnText.innerText = "Suara Panduan";
             } else {
                 speakText("Selamat Datang ke Perpustakaan Pemimpin Negara dan Sumbangannya! Sila terokai dewan pameran di menu atas.");
-                btnText.innerText = "Berhentikan Suara";
+                if (btnText) btnText.innerText = "Berhentikan Suara";
             }
         }
     </script>
